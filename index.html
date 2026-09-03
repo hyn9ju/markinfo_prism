@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PRISM 포트폴리오 · 마크인포</title>
+<link rel="icon" type="image/jpeg" href="images/asset_1.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --paper-dim:#F5F5F3;
+    --ink:#141414;
+    --ink-soft:#5C5B54;
+    --ink-faint:#9A988F;
+    --line:#E7E6E1;
+    --mint:#0EB97F;
+    --mint-dark:#0A8F63;
+    --mint-tint:#E6F7EF;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:10px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--ink);color:#fff;}
+  :focus-visible{outline:2px solid var(--mint-dark);outline-offset:2px;border-radius:4px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important;transition:none !important;} }
+
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+
+  /* ---------- Top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:var(--maxw);margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-img{height:22px;width:auto;flex:none;}
+  .logo-divider{width:1px;height:16px;background:var(--line);flex:none;}
+  .logo-sub{font-weight:800;font-size:13px;letter-spacing:0.01em;color:var(--ink);white-space:nowrap;}
+  .nav-links{display:flex;gap:22px;font-size:14px;font-weight:600;}
+  .nav-links a{color:var(--ink-soft);padding:6px 2px;border-bottom:2px solid transparent;}
+  .nav-links a.active{color:var(--ink);border-color:var(--ink);}
+  .like-indicator{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;background:var(--ink);color:#fff;padding:8px 12px;border-radius:999px;transition:background .2s;}
+  .like-indicator.ready{background:var(--mint);}
+  .like-indicator svg{width:14px;height:14px;fill:#fff;}
+
+  /* ---------- Hero / Home ---------- */
+  .hero{padding:52px 0 8px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.14em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .eyebrow .rule{width:24px;height:3px;border-radius:2px;background:var(--mint);}
+  .hero h1{font-size:34px;line-height:1.32;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px;max-width:560px;}
+  .hero p.sub{font-size:15px;color:var(--ink-soft);margin:0 0 32px;max-width:480px;line-height:1.6;}
+
+
+
+  .home-explore{margin-bottom:60px;}
+  .explore-label{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;}
+  .explore-label span{font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .explore-label a{font-size:13px;font-weight:700;color:var(--ink);}
+
+  /* ---------- Gallery grid (Instagram-style) ---------- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;}
+  .gallery-tile{position:relative;aspect-ratio:1/1;overflow:hidden;width:100%;display:block;border-radius:2px;cursor:pointer;padding:0;margin:0;}
+  .gallery-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+  .tile-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+  .tile-ph span{color:rgba(255,255,255,0.92);font-weight:800;font-size:26px;}
+  .tile-overlay{position:absolute;inset:0;opacity:0;transition:opacity .15s;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:10px;text-align:left;}
+  @media (hover:hover){
+    .gallery-tile:hover .tile-overlay{opacity:1;background:linear-gradient(180deg, rgba(20,20,20,0) 35%, rgba(20,20,20,0.62) 100%);}
+    .gallery-tile:hover .tile-like-btn{opacity:1;}
+  }
+  .tile-overlay .tile-name{display:block;color:#fff;font-size:12.5px;font-weight:800;line-height:1.3;}
+  .tile-overlay .tile-meta{display:block;color:rgba(255,255,255,0.8);font-size:10.5px;font-weight:600;margin-top:2px;}
+  .tile-like-btn{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:50%;background:rgba(20,20,20,0.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s;z-index:2;}
+  .tile-like-btn svg{width:16px;height:16px;stroke:#fff;stroke-width:2;fill:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.45));}
+  .tile-like-btn.active{background:rgba(20,20,20,0.5);}
+  .tile-like-btn.active svg{fill:var(--mint);stroke:var(--mint);}
+  @media (hover:none){ .tile-like-btn{display:none;} }
+  .gallery-empty{padding:60px 10px;text-align:center;color:var(--ink-soft);font-size:14px;line-height:1.7;}
+  .gallery-end{display:flex;flex-direction:column;align-items:center;gap:14px;padding:34px 0 50px;}
+  .gallery-end span{font-size:12px;color:var(--ink-faint);}
+  .back-btn{font-size:13px;font-weight:700;color:var(--ink);border:1.5px solid var(--ink);padding:9px 20px;border-radius:999px;}
+
+  /* ---------- Page head ---------- */
+  .page-head{padding:34px 0 22px;}
+  .page-head h1{font-size:24px;font-weight:800;margin:0 0 6px;}
+  .page-head p{font-size:14px;color:var(--ink-soft);margin:0;}
+
+  /* ---------- Studio grid ---------- */
+  .studio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding-bottom:20px;}
+  .studio-card{border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden;display:block;transition:border-color .15s;}
+  .studio-card:hover{border-color:var(--ink);}
+  .studio-card-thumbs{display:flex;gap:2px;background:var(--paper-dim);}
+  .studio-card-thumb{position:relative;overflow:hidden;flex:1;aspect-ratio:1/1;}
+  .studio-card-thumb-empty{background:var(--paper-dim);}
+  .studio-card-thumb img{width:100%;height:100%;object-fit:cover;}
+  .studio-card-body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:10px;}
+  .studio-card-row{display:flex;align-items:center;gap:10px;}
+  .studio-name{font-size:15px;font-weight:800;}
+  .studio-tags{display:flex;flex-wrap:wrap;gap:6px;}
+
+  .studio-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px;flex:none;object-fit:cover;}
+  .studio-avatar.lg{width:76px;height:76px;font-size:26px;}
+
+  /* ---------- Studio profile header ---------- */
+  .studio-header{display:flex;align-items:flex-start;gap:18px;padding:30px 0 26px;border-bottom:1px solid var(--line);margin-bottom:4px;}
+  .studio-header-info h1{font-size:22px;font-weight:800;margin:0 0 8px;}
+  .studio-bio{font-size:14px;color:var(--ink-soft);margin:0 0 12px;line-height:1.6;max-width:460px;}
+
+  /* ---------- Tag chips ---------- */
+  .tag-chip{font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;line-height:1;display:inline-flex;}
+  .tag-chip.style{background:var(--mint-tint);color:var(--mint-dark);}
+  .tag-chip.industry{background:var(--paper-dim);color:var(--ink-soft);}
+
+  /* ---------- Tags view ---------- */
+  .tag-section{margin-bottom:26px;}
+  .tag-section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .tag-section-title h2{font-size:14px;font-weight:800;margin:0;}
+  .tag-section-title span{font-size:12px;color:var(--ink-faint);}
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag-toggle{font-size:13px;font-weight:700;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink-soft);transition:border-color .12s,background .12s,color .12s;}
+  .tag-toggle.selected{border-color:transparent;background:var(--mint);color:#fff;}
+  .tag-clear-row{margin-top:10px;}
+  .tag-clear-btn{font-size:12px;font-weight:700;color:var(--ink-faint);text-decoration:underline;}
+  .gallery-section{margin-top:8px;}
+
+  /* ---------- Liked / analysis ---------- */
+  .liked-progress{border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;margin:28px 0 26px;}
+  .progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+  .progress-top strong{font-size:15px;font-weight:800;}
+  .progress-top span{font-size:12px;color:var(--ink-faint);}
+  .progress-track{height:8px;border-radius:999px;background:var(--paper-dim);overflow:hidden;margin-bottom:10px;}
+  .progress-fill{height:100%;border-radius:999px;background:var(--mint);transition:width .3s;}
+  .progress-msg{font-size:13px;color:var(--ink-soft);margin:0;}
+
+  .type-hero{background:var(--mint-tint);border-radius:28px;padding:36px 30px;margin:28px 0 26px;}
+  .type-hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+  .type-hero-top .badge{font-size:11px;font-weight:800;color:var(--mint-dark);background:rgba(255,255,255,0.6);padding:5px 10px;border-radius:999px;}
+  .type-hero-code{font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;font-weight:800;color:var(--mint-dark);letter-spacing:0.18em;margin-bottom:10px;}
+  .type-hero h2{font-size:28px;font-weight:800;margin:0 0 10px;}
+  .type-hero-desc{font-size:14.5px;color:var(--ink-soft);margin:0 0 26px;line-height:1.65;max-width:520px;}
+  .axis-bars{display:flex;flex-direction:column;gap:12px;margin-bottom:26px;}
+  .axis-bar-row{display:grid;grid-template-columns:78px 1fr 78px;align-items:center;gap:10px;font-size:12px;font-weight:700;color:var(--ink-soft);}
+  .axis-bar-row .axis-label-a{text-align:right;}
+  .axis-bar{height:7px;border-radius:999px;background:rgba(255,255,255,0.7);overflow:hidden;}
+  .axis-bar-fill{height:100%;background:var(--mint-dark);}
+  .fit-tags-label{font-size:12px;font-weight:800;color:var(--ink-soft);margin-bottom:10px;}
+  .fit-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px;}
+  .fit-tags .tag-chip{background:rgba(255,255,255,0.7);color:var(--ink-soft);}
+  .rec-title{font-size:12px;font-weight:800;color:var(--ink-soft);margin-bottom:10px;}
+  .rec-studios{display:flex;flex-direction:column;gap:8px;}
+  .rec-studio-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,0.7);border-radius:var(--radius-sm);}
+  .rec-studio-item .studio-avatar{width:34px;height:34px;font-size:13px;}
+  .rec-studio-item .studio-name{font-size:13px;}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{position:fixed;inset:0;background:rgba(20,20,20,0.72);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.open{display:flex;}
+  .modal-content{background:#fff;border-radius:var(--radius-lg);max-width:480px;width:100%;max-height:92vh;overflow-y:auto;position:relative;}
+  .modal-close{position:absolute;top:14px;right:14px;z-index:5;background:rgba(0,0,0,0.45);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .modal-media{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .modal-media img{width:100%;height:100%;object-fit:cover;}
+  .modal-media .tile-ph span{font-size:44px;}
+  .modal-prev,.modal-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.4);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .modal-prev{left:10px;} .modal-next{right:10px;}
+  .modal-dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:6px;}
+  .modal-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.5);}
+  .modal-dot.active{background:#fff;}
+  .modal-body{padding:20px 22px 24px;}
+  .modal-studio-link{font-size:12px;font-weight:700;color:var(--ink-faint);}
+  .modal-name{font-size:18px;font-weight:800;margin:6px 0 10px;}
+  .modal-desc{font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0 0 14px;}
+  .modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+  .like-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);flex:none;}
+  .modal-like-row{display:flex;align-items:center;gap:10px;}
+  .hint-bubble{display:flex;align-items:center;gap:8px;background:var(--mint-tint);color:var(--mint-dark);font-size:12px;font-weight:700;padding:8px 14px;border-radius:999px;}
+  .hint-close{font-size:11px;color:var(--mint-dark);opacity:0.7;line-height:1;}
+  .like-btn svg{width:19px;height:19px;stroke:var(--ink-soft);fill:none;transition:fill .12s,stroke .12s;}
+  .like-btn.active{border-color:transparent;background:var(--mint-tint);}
+  .like-btn.active svg{fill:var(--mint);stroke:var(--mint);}
+
+  /* ---------- Bottom nav (mobile) ---------- */
+  .bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:6px 10px calc(6px + env(safe-area-inset-bottom));}
+  .bottomnav-inner{display:flex;justify-content:space-around;}
+  .bottomnav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:700;color:var(--ink-faint);padding:4px 10px;position:relative;}
+  .bottomnav a.active{color:var(--ink);}
+  .bottomnav svg{width:21px;height:21px;stroke:currentColor;fill:none;}
+  .bottomnav .badge-count{position:absolute;top:-2px;right:2px;background:var(--ink);color:#fff;font-size:9px;font-weight:800;border-radius:999px;padding:1px 4px;min-width:14px;text-align:center;transition:background .2s;}
+  .bottomnav a.ready .badge-count{background:var(--mint);}
+
+  /* ---------- Admin ---------- */
+  .admin-note{background:var(--paper-dim);border-radius:var(--radius-md);padding:14px 16px;font-size:13px;color:var(--ink-soft);margin-bottom:24px;line-height:1.6;}
+  .admin-note-warn{background:#FBEFE6;color:#8A5A2A;}
+  .crop-overlay{position:fixed;inset:0;background:rgba(20,20,20,0.72);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;}
+  .crop-overlay.open{display:flex;}
+  .crop-panel{background:var(--paper);border-radius:var(--radius-lg);padding:20px;max-width:560px;width:100%;max-height:92vh;overflow:auto;}
+  .crop-head{font-size:15px;font-weight:800;margin-bottom:12px;}
+  .crop-stage{position:relative;display:inline-block;max-width:100%;line-height:0;user-select:none;touch-action:none;overflow:hidden;}
+  .crop-stage img{max-width:100%;max-height:52vh;display:block;}
+  .crop-box{position:absolute;border:2px solid #fff;box-shadow:0 0 0 9999px rgba(20,20,20,0.45);cursor:move;}
+  .crop-h{position:absolute;width:16px;height:16px;background:#fff;border-radius:3px;}
+  .crop-h.nw{left:-9px;top:-9px;cursor:nwse-resize;}
+  .crop-h.ne{right:-9px;top:-9px;cursor:nesw-resize;}
+  .crop-h.sw{left:-9px;bottom:-9px;cursor:nesw-resize;}
+  .crop-h.se{right:-9px;bottom:-9px;cursor:nwse-resize;}
+  .crop-ratios{display:flex;gap:6px;margin:14px 0 6px;flex-wrap:wrap;}
+  .crop-ratio{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;background:var(--paper);}
+  .crop-ratio.active{background:var(--mint);color:#fff;border-color:var(--mint);}
+  .admin-hidden-badge{font-size:10px;font-weight:800;color:#8A5A2A;background:#FBEFE6;padding:2px 7px;border-radius:999px;margin-left:auto;}
+  .admin-studio-form{display:grid;grid-template-columns:260px 1fr;gap:28px;margin-bottom:18px;}
+  .admin-form-col{min-width:0;}
+  .admin-tabs{display:flex;gap:8px;margin-bottom:22px;border-bottom:1px solid var(--line);}
+  .admin-tab{padding:10px 4px;font-size:14px;font-weight:700;color:var(--ink-faint);border-bottom:2px solid transparent;margin-right:14px;}
+  .admin-tab.active{color:var(--ink);border-color:var(--ink);}
+  .admin-block{margin-bottom:34px;}
+  .admin-block h2{font-size:15px;font-weight:800;margin:0 0 14px;}
+  .admin-item{border:1px solid var(--line);border-radius:var(--radius-md);padding:16px;margin-bottom:12px;}
+  .admin-row{margin-bottom:10px;}
+  .admin-row label{font-size:12px;font-weight:700;color:var(--ink-faint);display:block;margin-bottom:4px;}
+  .admin-row input[type=text],.admin-row textarea,.admin-row select{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;background:#fff;}
+  .admin-row textarea{resize:vertical;min-height:52px;}
+  .admin-2col{display:flex;gap:10px;}
+  .admin-2col > div{flex:1;}
+  .admin-checks{display:flex;flex-wrap:wrap;gap:6px;}
+  .admin-check{font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-soft);}
+  .admin-check input{margin-right:4px;}
+  .admin-btn{background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:9px 16px;border-radius:8px;}
+  .admin-btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+  .admin-btn.danger{background:transparent;color:#B23046;border:1px solid #B23046;}
+  .admin-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+  .admin-export textarea{width:100%;min-height:160px;font-family:monospace;font-size:12px;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--paper-dim);}
+  .admin-image-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+  .admin-image-thumb{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+  .admin-image-thumb img{width:100%;height:100%;object-fit:cover;}
+  .admin-image-thumb .remove-btn{position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,0.6);color:#fff;font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;}
+  .admin-image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:12px;}
+  .admin-image-thumb-lg{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;border:1px solid var(--line);}
+  .admin-image-thumb-lg img{width:100%;height:100%;object-fit:cover;display:block;}
+  .admin-image-thumb-fade{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%);pointer-events:none;}
+  .remove-btn-lg{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,0.6);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;}
+  .admin-file-input{font-size:12px;margin-bottom:8px;}
+  .admin-url-row{display:flex;gap:6px;}
+  .admin-url-row input{flex:1;}
+  .admin-save-row{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap;}
+  .admin-save-hint{font-size:12px;color:var(--ink-faint);}
+  .admin-studio-card, .admin-add-card{width:100%;text-align:left;padding:0;font:inherit;}
+  .admin-add-card{border:1.5px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:190px;color:var(--ink-faint);gap:8px;text-align:center;transition:border-color .15s;}
+  .admin-add-card:hover{border-color:var(--ink);}
+  .admin-add-plus{font-size:30px;font-weight:300;line-height:1;color:var(--ink-faint);}
+  .admin-add-tile{border:1.5px dashed var(--line);background:var(--paper-dim);display:flex;align-items:center;justify-content:center;}
+  .admin-add-tile:hover{border-color:var(--ink);}
+  .back-link{font-size:13px;font-weight:700;color:var(--ink-soft);margin-bottom:16px;display:inline-block;}
+  .admin-preview-label{font-size:11px;font-weight:800;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+  .admin-preview-box{border:1px solid var(--line);border-radius:var(--radius-md);padding:0 20px;margin-bottom:26px;pointer-events:none;}
+  .admin-preview-box .studio-header{border-bottom:none;}
+  .admin-hint{font-size:12px;color:var(--ink-faint);margin-top:8px;}
+  .admin-color-input{width:56px;height:36px;border:1px solid var(--line);border-radius:8px;padding:2px;background:#fff;cursor:pointer;}
+  .admin-tile-overlay{opacity:1;background:linear-gradient(180deg, rgba(20,20,20,0) 45%, rgba(20,20,20,0.65) 100%);}
+
+  footer.site-footer{padding:40px 0 90px;color:var(--ink-faint);font-size:12px;text-align:center;}
+  .footer-admin-link{color:var(--ink-faint);text-decoration:underline;}
+
+  @media (max-width:720px){
+    .nav-links{display:none;}
+    .bottomnav{display:block;}
+    body{padding-bottom:64px;}
+    .hero{padding:30px 0 4px;}
+    .hero h1{font-size:27px;}
+    .studio-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(3,1fr);}
+    .axis-bar-row{grid-template-columns:56px 1fr 56px;font-size:10.5px;gap:6px;}
+    .type-hero{padding:24px 18px;}
+    .type-hero h2{font-size:21px;}
+    .studio-header{gap:14px;}
+    .studio-avatar.lg{width:60px;height:60px;font-size:21px;}
+    .admin-tabs{flex-wrap:wrap;}
+    .admin-2col{flex-direction:column;}
+    .admin-studio-form{grid-template-columns:1fr;}
+  }
+  @media (max-width:420px){
+    .logo-sub{display:none;}
+    .logo-divider{display:none;}
+    .topbar-inner{padding:12px 16px;}
+    .container{padding:0 16px;}
+  }
+
+  /* ---------- 최상단으로 가기 ---------- */
+  .scroll-top-btn{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(10px);width:42px;height:42px;border-radius:50%;background:#FFFFFF;border:1px solid var(--line);box-shadow:0 6px 18px rgba(20,20,20,0.14);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);z-index:39;opacity:0;pointer-events:none;transition:opacity .18s ease, transform .18s ease;}
+  .scroll-top-btn:hover{color:var(--ink);}
+  .scroll-top-btn.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+  .scroll-top-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  @media (max-width:720px){ .scroll-top-btn{bottom:80px;} }
+
+  /* ---------- 홈 무한 로딩 ---------- */
+  .home-load-sentinel{height:1px;}
+  .home-load-spinner{display:flex;justify-content:center;padding:22px 0;color:var(--ink-faint);font-size:12px;}
+
+  /* ---------- 시트(표) 관리 ---------- */
+  .sheet-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px;}
+  .sheet-toolbar select{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;background:#fff;}
+  .sheet-upload-btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--ink);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;background:#fff;}
+  .sheet-upload-btn input{display:none;}
+  .sheet-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-md);}
+  table.sheet-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:920px;}
+  table.sheet-table th{background:var(--paper-dim);text-align:left;font-weight:800;color:var(--ink-soft);padding:9px 10px;position:sticky;top:0;white-space:nowrap;}
+  table.sheet-table td{border-top:1px solid var(--line);padding:6px 8px;vertical-align:middle;}
+  table.sheet-table tr:hover td{background:#FAFAF8;}
+  .sheet-thumb-cell{display:flex;align-items:center;gap:8px;}
+  .sheet-thumb{width:42px;height:42px;border-radius:6px;object-fit:cover;flex:none;background:var(--paper-dim);}
+  .sheet-thumb-broken{width:42px;height:42px;border-radius:6px;flex:none;background:#FBEFE6;color:#B14343;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;text-align:center;line-height:1.2;}
+  .sheet-path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;color:var(--ink-faint);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  table.sheet-table input[type=text],table.sheet-table select{width:100%;min-width:90px;border:1px solid transparent;border-radius:6px;padding:5px 6px;font-size:12.5px;font-family:inherit;background:transparent;}
+  table.sheet-table input[type=text]:hover,table.sheet-table select:hover{border-color:var(--line);}
+  table.sheet-table input[type=text]:focus,table.sheet-table select:focus{border-color:var(--mint);background:#fff;outline:none;}
+  .sheet-row-del{color:var(--ink-faint);font-size:16px;line-height:1;padding:4px 8px;}
+  .sheet-row-del:hover{color:#B14343;}
+  .sheet-empty{padding:30px;text-align:center;color:var(--ink-faint);font-size:13px;}
+  .sheet-progress{font-size:12px;color:var(--ink-faint);margin-top:10px;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#/" class="logo">
+      <img class="logo-img" src="images/asset_2.png" alt="MARKINFO">
+      <span class="logo-divider"></span>
+      <span class="logo-sub">PRISM 포트폴리오</span>
+    </a>
+
+    <a href="#/liked" class="like-indicator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg><span class="js-like-count">0</span></a>
+  </div>
+</header>
+
+<main id="app" class="container"></main>
+
+<nav class="bottomnav">
+  <div class="bottomnav-inner">
+    <a href="#/" data-route="" class="">
+      <svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 11.5 12 4l8 7.5"></path><path d="M6 10v9h5v-5h2v5h5v-9"></path></svg>홈
+    </a>
+    <a href="#/liked" data-route="liked" class="like-indicator" style="background:none;padding:4px 10px;color:var(--ink-faint);">
+      <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>좋아요
+      <span class="badge-count js-like-count">0</span>
+    </a>
+  </div>
+</nav>
+
+<button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="맨 위로 가기">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg>
+</button>
+<div class="modal-overlay" id="modal-overlay"><div class="modal-content" id="modal-content"></div></div>
+<div class="modal-overlay" id="admin-modal-overlay"><div class="modal-content" id="admin-modal-content"></div></div>
+<div class="crop-overlay" id="crop-overlay"><div class="crop-panel">
+  <div class="crop-head">이미지 다듬기 <span id="crop-count"></span></div>
+  <div class="crop-stage" id="crop-stage"><img id="crop-img" alt=""><div class="crop-box" id="crop-box"><span class="crop-h nw" data-h="nw"></span><span class="crop-h ne" data-h="ne"></span><span class="crop-h sw" data-h="sw"></span><span class="crop-h se" data-h="se"></span></div></div>
+  <div class="crop-ratios">
+    <button type="button" class="crop-ratio active" data-ratio="1">1:1</button>
+    <button type="button" class="crop-ratio" data-ratio="0.8">4:5</button>
+    <button type="button" class="crop-ratio" data-ratio="1.777">16:9</button>
+    <button type="button" class="crop-ratio" data-ratio="0">자유</button>
+  </div>
+  <p class="admin-hint" id="crop-info"></p>
+  <div class="admin-actions">
+    <button type="button" class="admin-btn" id="crop-apply">적용</button>
+    <button type="button" class="admin-btn ghost" id="crop-skip">자르지 않고 사용</button>
+    <button type="button" class="admin-btn ghost" id="crop-cancel">취소</button>
+  </div>
+</div></div>
+
+<script>
+(function(){
+  "use strict";
+
+  const APP_VERSION = "1.0";
+  const APP_DATE = "2026-09-03";
+  function nextVersion(v){
+    const parts = v.split(".");
+    const minor = parseInt(parts[1],10)+1;
+    return parts[0]+"."+minor;
+  }
+  function exportNewVersionHTML(){
+    if(pendingImageOps > 0){
+      alert("이미지를 처리하는 중이에요. 처리가 끝나면 저장 버튼이 다시 활성화됩니다.");
+      return;
+    }
+    doExportNewVersionHTML();
+  }
+  // 주의: 마커 리터럴이 이 코드 안에 그대로 등장하면 자기 자신을 치환해버린다.
+  // 반드시 분할 결합으로 만들어, 온전한 리터럴은 데이터 블록에만 존재하도록 한다.
+  const DM_START = "/*__PRISM" + "_DATA_START__*/";
+  const DM_END = "/*__PRISM" + "_DATA_END__*/";
+  function buildDataBlock(){
+    return "  " + DM_START + "\n"
+      + '  const DEFAULT_STUDIOS = ' + JSON.stringify(STUDIOS) + ';\n'
+      + '  const DEFAULT_POSTS = ' + JSON.stringify(POSTS) + ';\n'
+      + '  const DEFAULT_SETTINGS = ' + JSON.stringify(SETTINGS) + ';\n'
+      + "  " + DM_END + "\n";
+  }
+  function doExportNewVersionHTML(){
+    closeModal();
+    const adminOverlay = document.getElementById("admin-modal-overlay");
+    if(adminOverlay) adminOverlay.classList.remove("open");
+    const newVersion = nextVersion(APP_VERSION);
+    const todayStr = new Date().toISOString().slice(0,10);
+
+    // 화면에 렌더된 내용(관리자 이미지 미리보기 등)이 파일에 그대로 굳어버리면
+    // 같은 이미지가 데이터와 DOM에 두 번 들어가 파일이 2배로 커진다. 캡처 전에 비운다.
+    const appEl = document.getElementById("app");
+    const modalEl = document.getElementById("modal-content");
+    const adminModalEl = document.getElementById("admin-modal-content");
+    const keepApp = appEl ? appEl.innerHTML : null;
+    if(appEl) appEl.innerHTML = "";
+    if(modalEl) modalEl.innerHTML = "";
+    if(adminModalEl) adminModalEl.innerHTML = "";
+
+    let html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+    if(appEl && keepApp !== null) appEl.innerHTML = keepApp;
+
+    html = html.replace(/const APP_VERSION = "[^"]*";/, function(){ return 'const APP_VERSION = "'+newVersion+'";'; });
+    html = html.replace(/const APP_DATE = "[^"]*";/, function(){ return 'const APP_DATE = "'+todayStr+'";'; });
+
+    // 데이터 블록 치환 — 마커 기준. 실패하면 조용히 넘어가지 않고 중단한다.
+    const si = html.indexOf(DM_START);
+    const ei = html.indexOf(DM_END);
+    if(si === -1 || ei === -1 || ei < si){
+      alert("저장에 실패했어요: 데이터 삽입 위치(마커)를 찾지 못했습니다. 파일이 손상되었을 수 있어요. 이 파일을 사용하지 말고 알려주세요.");
+      return;
+    }
+    const lineStart = html.lastIndexOf("\n", si) + 1;
+    let endLineEnd = html.indexOf("\n", ei);
+    if(endLineEnd === -1) endLineEnd = ei + DM_END.length;
+    html = html.slice(0, lineStart) + buildDataBlock() + html.slice(endLineEnd + 1);
+
+    // 치환 검증 1단계: 마커와 데이터 선언이 남아있는지
+    if(html.indexOf(DM_START) === -1 || html.indexOf(DM_END) === -1){
+      alert("저장에 실패했어요: 다음 버전용 표식이 사라졌습니다. 이 파일을 사용하지 말고 알려주세요.");
+      return;
+    }
+    // 치환 검증 2단계: 결과물을 실제로 파싱해 개수를 대조한다.
+    let vs, vp;
+    try{
+      const ms = html.match(/const DEFAULT_STUDIOS = (\[[\s\S]*?\]);\n/);
+      const mp = html.match(/const DEFAULT_POSTS = (\[[\s\S]*?\]);\n/);
+      vs = JSON.parse(ms[1]);
+      vp = JSON.parse(mp[1]);
+    }catch(err){
+      alert("저장에 실패했어요: 파일에 기록된 데이터를 다시 읽을 수 없습니다. 이 파일을 사용하지 말고 알려주세요.");
+      return;
+    }
+    const wantImgs = totalImageCount();
+    const gotImgs = vs.filter(function(s){ return !!s.profileImage; }).length
+      + vp.reduce(function(a,p){ return a + ((p.images||[]).length); }, 0);
+    if(vs.length !== STUDIOS.length || vp.length !== POSTS.length || gotImgs !== wantImgs){
+      alert("저장을 중단했어요: 파일에 기록된 내용이 화면과 다릅니다.\n\n화면: 스튜디오 "+STUDIOS.length+" · 게시물 "+POSTS.length+" · 이미지 "+wantImgs
+        +"\n파일: 스튜디오 "+vs.length+" · 게시물 "+vp.length+" · 이미지 "+gotImgs
+        +"\n\n이 파일을 사용하지 말고 알려주세요.");
+      return;
+    }
+
+    const blob = new Blob([html], {type:"text/html"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "prism_portfolio_v"+newVersion+".html";
+    a.click();
+    alert("v"+newVersion+" 파일이 저장되었습니다 ("+formatBytes(html.length)+").\n검증 완료 — 스튜디오 "+vs.length+"개 · 게시물 "+vp.length+"개 · 이미지 "+gotImgs+"장 ("+formatBytes(totalImageBytes())+")\n이 파일이 다음 버전의 기준이 됩니다.");
+  }
+
+  /* ---- 웹 업로드용 폴더 내보내기 (index.html + images/) ----
+     이미지를 실제 파일로 분리해서 HTML 자체를 가볍게 만든다.
+     이미 이미지 폴더로 분리된 참조(상대경로)는 fetch로 다시 읽어 새 폴더에 복사하고,
+     이 화면에서 새로 올린 이미지(data URL)는 바로 파일로 기록한다. */
+  function loadJSZip(){
+    return new Promise(function(resolve, reject){
+      if(window.JSZip){ resolve(window.JSZip); return; }
+      const s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+      s.onload = function(){ resolve(window.JSZip); };
+      s.onerror = function(){ reject(new Error("load-fail")); };
+      document.head.appendChild(s);
+    });
+  }
+  function mimeExt(mime){
+    if(!mime) return "jpg";
+    if(mime.indexOf("webp")>-1) return "webp";
+    if(mime.indexOf("png")>-1) return "png";
+    if(mime.indexOf("gif")>-1) return "gif";
+    return "jpg";
+  }
+  function bytesToBase64(bytes){
+    let binary = "";
+    const chunk = 0x8000;
+    for(let i=0;i<bytes.length;i+=chunk){
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i+chunk));
+    }
+    return btoa(binary);
+  }
+  function dataUrlToBase64(dataUrl){
+    const comma = dataUrl.indexOf(",");
+    return {base64: dataUrl.slice(comma+1), mime: dataUrl.slice(5, comma).split(";")[0]};
+  }
+  function fetchAsBase64(path){
+    return fetch(path).then(function(res){
+      if(!res.ok) throw new Error("fetch-fail");
+      return res.arrayBuffer().then(function(buf){
+        return {base64: bytesToBase64(new Uint8Array(buf)), mime: res.headers.get("content-type") || ""};
+      });
+    });
+  }
+  function exportWebUploadZip(){
+    if(pendingImageOps > 0){ alert("이미지를 처리하는 중이에요. 처리가 끝나면 다시 시도해주세요."); return; }
+    loadJSZip().then(function(JSZip){
+      const newVersion = nextVersion(APP_VERSION);
+      const folderName = "프리즘 포트폴리오 v" + newVersion;
+      const zip = new JSZip();
+      const root = zip.folder(folderName);
+      const imgFolder = root.folder("images");
+
+      const studiosCopy = clone(STUDIOS);
+      const postsCopy = clone(POSTS);
+      let unresolved = 0;
+
+      function resolveImage(value, baseName){
+        const task = isDataUrl(value) ? Promise.resolve(dataUrlToBase64(value)) : fetchAsBase64(value);
+        return task.then(function(res){
+          const filename = baseName + "." + mimeExt(res.mime);
+          imgFolder.file(filename, res.base64, {base64:true});
+          return filename;
+        }).catch(function(){ unresolved++; return null; });
+      }
+
+      const jobs = [];
+      studiosCopy.forEach(function(s){
+        if(!s.profileImage) return;
+        jobs.push(resolveImage(s.profileImage, s.id).then(function(fn){ if(fn) s.profileImage = "images/"+fn; }));
+      });
+      postsCopy.forEach(function(p){
+        (p.images||[]).forEach(function(im, idx){
+          if(!im) return;
+          jobs.push(resolveImage(im, p.id+"_"+idx).then(function(fn){ if(fn) p.images[idx] = "images/"+fn; }));
+        });
+      });
+
+      return Promise.all(jobs).then(function(){
+        const appEl = document.getElementById("app");
+        const modalEl = document.getElementById("modal-content");
+        const adminModalEl = document.getElementById("admin-modal-content");
+        const keepApp = appEl ? appEl.innerHTML : null;
+        if(appEl) appEl.innerHTML = "";
+        if(modalEl) modalEl.innerHTML = "";
+        if(adminModalEl) adminModalEl.innerHTML = "";
+        let html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+        if(appEl && keepApp !== null) appEl.innerHTML = keepApp;
+
+        const todayStr = new Date().toISOString().slice(0,10);
+        html = html.replace(/const APP_VERSION = "[^"]*";/, function(){ return 'const APP_VERSION = "'+newVersion+'";'; });
+        html = html.replace(/const APP_DATE = "[^"]*";/, function(){ return 'const APP_DATE = "'+todayStr+'";'; });
+
+        const si = html.indexOf(DM_START), ei = html.indexOf(DM_END);
+        if(si === -1 || ei === -1 || ei < si) throw new Error("marker-missing");
+        const lineStart = html.lastIndexOf("\n", si) + 1;
+        let endLineEnd = html.indexOf("\n", ei);
+        if(endLineEnd === -1) endLineEnd = ei + DM_END.length;
+        const newBlock = "  " + DM_START + "\n"
+          + '  const DEFAULT_STUDIOS = ' + JSON.stringify(studiosCopy) + ';\n'
+          + '  const DEFAULT_POSTS = ' + JSON.stringify(postsCopy) + ';\n'
+          + "  " + DM_END + "\n";
+        html = html.slice(0, lineStart) + newBlock + html.slice(endLineEnd + 1);
+
+        // 검증: 이미지 경로가 실제로 이미지 폴더를 가리키는지, 개수가 맞는지
+        let vs, vp;
+        const ms = html.match(/const DEFAULT_STUDIOS = (\[[\s\S]*?\]);\n/);
+        const mp = html.match(/const DEFAULT_POSTS = (\[[\s\S]*?\]);\n/);
+        vs = JSON.parse(ms[1]); vp = JSON.parse(mp[1]);
+        if(vs.length !== STUDIOS.length || vp.length !== POSTS.length) throw new Error("count-mismatch");
+
+        // 마무리: STUDIOS/POSTS 외에 정적 마크업에 남은 base64 이미지(로고, 파비콘 등)도
+        // 전부 파일로 분리한다. 어떤 요소인지 몰라도 되도록 범용으로 처리.
+        let assetIdx = 0;
+        const assetJobs = [];
+        html = html.replace(/(src|href)="(data:image\/[a-zA-Z0-9.+-]+;base64,[^"]+)"/g, function(whole, attr, dataUrl){
+          const idx = ++assetIdx;
+          const placeholder = "__ASSET_" + idx + "__";
+          assetJobs.push({placeholder: placeholder, dataUrl: dataUrl});
+          return attr + '="' + placeholder + '"';
+        });
+        assetJobs.forEach(function(job){
+          const res = dataUrlToBase64(job.dataUrl);
+          const filename = "asset_" + job.placeholder.replace(/\D/g, "") + "." + mimeExt(res.mime);
+          imgFolder.file(filename, res.base64, {base64:true});
+          html = html.split(job.placeholder).join("images/" + filename);
+        });
+
+        root.file("index.html", html);
+        return zip.generateAsync({type:"blob"}).then(function(blob){ return {blob:blob, folderName:folderName, unresolved:unresolved}; });
+      });
+    }).then(function(r){
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(r.blob);
+      a.download = r.folderName + ".zip";
+      a.click();
+      alert(r.folderName + ".zip 파일이 저장되었습니다.\n압축을 풀면 index.html과 images 폴더가 나와요 — 이 폴더째로 웹 서버에 올리면 됩니다."
+        + (r.unresolved ? "\n\n※ 이미지 "+r.unresolved+"개는 다시 읽어오지 못해 이전 경로를 그대로 두었어요. 기존 images 폴더에서 해당 파일을 함께 복사해주세요." : ""));
+    }).catch(function(err){
+      if(err && err.message === "load-fail"){
+        alert("웹 업로드용 내보내기에 필요한 라이브러리를 불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해주세요.");
+      } else if(err && err.message === "marker-missing"){
+        alert("내보내기에 실패했어요: 데이터 삽입 위치(마커)를 찾지 못했습니다. 이 파일을 사용하지 말고 알려주세요.");
+      } else if(err && err.message === "count-mismatch"){
+        alert("내보내기를 중단했어요: 파일에 기록된 스튜디오·게시물 수가 화면과 다릅니다. 이 파일을 사용하지 말고 알려주세요.");
+      } else {
+        alert("웹 업로드용 내보내기 중 문제가 발생했어요. 다시 시도해주세요.");
+      }
+    });
+  }
+
+  /* =========================================================
+     0. 브랜드 스타일 매트릭스 16 (마크인포 내부 가이드라인 v2.1 기준)
+     4개 축(무게감/에너지/설득방식/시대감) × 2값 = 16개 스타일
+     ========================================================= */
+  const AXES = {
+    weight:     { name:"무게감",   sub:"얼마나 무겁게 말할까",   letters:{G:"진지함", L:"가벼움"} },
+    energy:     { name:"에너지",   sub:"목소리를 얼마나 크게 낼까", letters:{B:"강렬함", S:"부드러움"} },
+    persuasion: { name:"설득 방식", sub:"마음으로 vs 근거로",     letters:{E:"감성적", R:"이성적"} },
+    era:        { name:"시대감",   sub:"어제의 멋 vs 오늘의 멋",  letters:{C:"클래식", M:"모던"} },
+  };
+
+  const TYPES_16 = [
+    {code:"GBEC", name:"럭셔리", detail:"장식적인 형태와 깊은 색이 만드는 클래식한 고급감", fit:["주얼리·예물","위스키·와인","공연·갤러리","프리미엄 한정판"]},
+    {code:"GBEM", name:"시네마틱", detail:"어두운 배경과 극적인 명암이 만드는 강한 존재감", fit:["자동차·튜닝","하이엔드 오디오","영상·프로덕션","프리미엄 테크"]},
+    {code:"GBRC", name:"헤리티지", detail:"전통적인 서체와 안정된 대칭에서 느껴지는 오랜 신뢰", fit:["법률·특허·세무","금융·보험","부동산·자산","공공·기관"]},
+    {code:"GBRM", name:"테크니컬", detail:"정교한 기하학과 선명한 대비가 만드는 현대적인 인상", fit:["B2B·솔루션","제조·엔지니어링","컨설팅","IT 서비스"]},
+    {code:"GSEC", name:"젠", detail:"낮은 채도와 넓은 여백이 만드는 고요하고 절제된 분위기", fit:["상조·추모","사찰·명상","전통 다도·한방","조용한 예식"]},
+    {code:"GSEM", name:"내추럴", detail:"자연색과 유기적인 곡선이 만드는 부드러운 편안함", fit:["웰니스·스파","스킨케어","요가·필라테스","호텔·스테이"]},
+    {code:"GSRC", name:"아카데믹", detail:"고전적인 타이포와 정돈된 구조가 만드는 지적인 인상", fit:["교육·학원","출판·콘텐츠","박물관·아카이브","전문 리서치"]},
+    {code:"GSRM", name:"클린", detail:"밝은 배경과 정밀한 도형이 만드는 깨끗하고 정확한 인상", fit:["병원·의원","제약·헬스케어","검사·측정","위생·클린 서비스"]},
+    {code:"LBEC", name:"레트로", detail:"따뜻한 색감과 복고풍 타이포가 만드는 친근한 활기", fit:["수제버거·분식","크래프트 맥주","빈티지 숍","레트로 카페"]},
+    {code:"LBEM", name:"스트리트", detail:"대담한 색과 비정형 타이포가 만드는 자유로운 개성", fit:["게임·e스포츠","스트리트 패션","페스티벌·팝업","유스 콘텐츠"]},
+    {code:"LBRC", name:"스포티", detail:"스포츠에서 연상되는 굵은 형태와 선명한 팀 컬러의 역동성", fit:["체육관·클럽","아웃도어","동호회·커뮤니티","학원 스포츠"]},
+    {code:"LBRM", name:"다이내믹", detail:"사선과 방향성 있는 형태가 만드는 경쾌한 움직임", fit:["앱·플랫폼","배달·예약 서비스","핀테크","렌탈·구독"]},
+    {code:"LSEC", name:"크래프트", detail:"손글씨와 자연스러운 질감에서 느껴지는 따뜻한 손맛", fit:["베이커리·디저트","플라워·소품","공방·핸드메이드","동네 서점"]},
+    {code:"LSEM", name:"러블리", detail:"파스텔과 둥근 형태가 만드는 밝고 친근한 사랑스러움", fit:["뷰티·네일","디저트·음료","굿즈·캐릭터","웨딩·이벤트"]},
+    {code:"LSRC", name:"에디토리얼", detail:"넓은 여백과 정돈된 타이포에 섬세한 포인트를 더한 감성적 미니멀", fit:["편집숍·큐레이션","카페·브런치","갤러리·전시","뉴스레터·매거진"]},
+    {code:"LSRM", name:"미니멀", detail:"단순한 도형과 명확한 서체가 만드는 기능적인 정돈", fit:["소프트웨어·도구","문서·협업 서비스","공공 디지털","기술 지원"]},
+  ];
+  const INDUSTRY_TAGS = [
+    {name:"🍽️ 식음료", desc:"외식, 카페, 식품"},
+    {name:"💄 뷰티", desc:"화장품, 헤어, 에스테틱"},
+    {name:"👗 패션", desc:"의류, 잡화, 주얼리"},
+    {name:"🏡 라이프", desc:"가구, 반려동물, 취미"},
+    {name:"💻 테크", desc:"소프트웨어, 플랫폼, 전자기기"},
+    {name:"💳 금융", desc:"은행, 투자, 핀테크"},
+    {name:"🏥 의료", desc:"병원, 제약, 의료기기"},
+    {name:"🎓 교육", desc:"학교, 학원, 에듀테크"},
+    {name:"🛍️ 유통", desc:"쇼핑몰, 편집숍, 물류"},
+    {name:"🏭 산업", desc:"제조, 소재, 에너지"},
+    {name:"🏢 공간", desc:"건축, 인테리어, 부동산"},
+    {name:"💼 전문 서비스", desc:"법률, 회계, 컨설팅"},
+    {name:"🎬 콘텐츠", desc:"미디어, 엔터테인먼트, 출판"},
+    {name:"✈️ 여행", desc:"여행사, 숙박, 관광"},
+    {name:"🏛️ 공공", desc:"공공기관, 비영리, 협회"}
+  ];
+  const MINT_SHADES = ["#0EB97F","#0AA6A6","#14B8A6","#0D9488"];
+
+  function typeByName(name){ return TYPES_16.find(t=>t.name===name); }
+  function decodeCode(code){ return {weight:code[0], energy:code[1], persuasion:code[2], era:code[3]}; }
+
+  /* =========================================================
+     1. 샘플 데이터 — 실제 데이터로 교체 가능 (관리자 패널 사용)
+     ========================================================= */
+  /*__PRISM_DATA_START__*/
+  const DEFAULT_STUDIOS = [{"id":"sA","name":"A","bio":"","tags":[],"profileImage":null,"avatarColor":null,"avatarInitial":null,"hidden":false},{"id":"sB","name":"B","bio":"","tags":[],"profileImage":null,"avatarColor":null,"avatarInitial":null,"hidden":false},{"id":"sC","name":"C","bio":"","tags":[],"profileImage":null,"avatarColor":null,"avatarInitial":null,"hidden":false},{"id":"sD","name":"D","bio":"","tags":[],"profileImage":null,"avatarColor":null,"avatarInitial":null,"hidden":false},{"id":"sE","name":"E","bio":"","tags":[],"profileImage":null,"avatarColor":null,"avatarInitial":null,"hidden":false},{"id":"sF","name":"F","bio":"","tags":[],"profileImage":null,"avatarColor":null,"avatarInitial":null,"hidden":false}];
+  const DEFAULT_POSTS = [{"id":"p_MP_A_01","studioId":"sA","name":"MP_A_01","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_01_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_02","studioId":"sA","name":"MP_A_02","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_02_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_03","studioId":"sA","name":"MP_A_03","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_03_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_04","studioId":"sA","name":"MP_A_04","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_04_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_05","studioId":"sA","name":"MP_A_05","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_05_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_06","studioId":"sA","name":"MP_A_06","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_06_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_07","studioId":"sA","name":"MP_A_07","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_07_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_08","studioId":"sA","name":"MP_A_08","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_08_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_09","studioId":"sA","name":"MP_A_09","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_09_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_10","studioId":"sA","name":"MP_A_10","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_10_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_11","studioId":"sA","name":"MP_A_11","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_11_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_12","studioId":"sA","name":"MP_A_12","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_12_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_13","studioId":"sA","name":"MP_A_13","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_13_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_14","studioId":"sA","name":"MP_A_14","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_14_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_15","studioId":"sA","name":"MP_A_15","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_15_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_A_16","studioId":"sA","name":"MP_A_16","description":"","styleType":"","industryTags":[],"images":["images/p_MP_A_16_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_B_01","studioId":"sB","name":"MP_B_01","description":"","styleType":"","industryTags":[],"images":["images/p_MP_B_01_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_B_02","studioId":"sB","name":"MP_B_02","description":"","styleType":"","industryTags":[],"images":["images/p_MP_B_02_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_B_03","studioId":"sB","name":"MP_B_03","description":"","styleType":"","industryTags":[],"images":["images/p_MP_B_03_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_B_04","studioId":"sB","name":"MP_B_04","description":"","styleType":"","industryTags":[],"images":["images/p_MP_B_04_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_B_05","studioId":"sB","name":"MP_B_05","description":"","styleType":"","industryTags":[],"images":["images/p_MP_B_05_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_B_06","studioId":"sB","name":"MP_B_06","description":"","styleType":"","industryTags":[],"images":["images/p_MP_B_06_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_01","studioId":"sC","name":"MP_C_01","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_01_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_02","studioId":"sC","name":"MP_C_02","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_02_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_03","studioId":"sC","name":"MP_C_03","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_03_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_04","studioId":"sC","name":"MP_C_04","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_04_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_05","studioId":"sC","name":"MP_C_05","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_05_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_06","studioId":"sC","name":"MP_C_06","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_06_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_07","studioId":"sC","name":"MP_C_07","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_07_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_08","studioId":"sC","name":"MP_C_08","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_08_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_09","studioId":"sC","name":"MP_C_09","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_09_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_10","studioId":"sC","name":"MP_C_10","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_10_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_11","studioId":"sC","name":"MP_C_11","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_11_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_12","studioId":"sC","name":"MP_C_12","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_12_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_13","studioId":"sC","name":"MP_C_13","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_13_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_14","studioId":"sC","name":"MP_C_14","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_14_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_15","studioId":"sC","name":"MP_C_15","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_15_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_C_16","studioId":"sC","name":"MP_C_16","description":"","styleType":"","industryTags":[],"images":["images/p_MP_C_16_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_D_01","studioId":"sD","name":"MP_D_01","description":"","styleType":"","industryTags":[],"images":["images/p_MP_D_01_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_D_02","studioId":"sD","name":"MP_D_02","description":"","styleType":"","industryTags":[],"images":["images/p_MP_D_02_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_D_03","studioId":"sD","name":"MP_D_03","description":"","styleType":"","industryTags":[],"images":["images/p_MP_D_03_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_D_04","studioId":"sD","name":"MP_D_04","description":"","styleType":"","industryTags":[],"images":["images/p_MP_D_04_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_D_05","studioId":"sD","name":"MP_D_05","description":"","styleType":"","industryTags":[],"images":["images/p_MP_D_05_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_D_06","studioId":"sD","name":"MP_D_06","description":"","styleType":"","industryTags":[],"images":["images/p_MP_D_06_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_D_07","studioId":"sD","name":"MP_D_07","description":"","styleType":"","industryTags":[],"images":["images/p_MP_D_07_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_01","studioId":"sE","name":"MP_E_01","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_01_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_02","studioId":"sE","name":"MP_E_02","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_02_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_03","studioId":"sE","name":"MP_E_03","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_03_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_04","studioId":"sE","name":"MP_E_04","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_04_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_05","studioId":"sE","name":"MP_E_05","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_05_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_06","studioId":"sE","name":"MP_E_06","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_06_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_07","studioId":"sE","name":"MP_E_07","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_07_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_08","studioId":"sE","name":"MP_E_08","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_08_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_09","studioId":"sE","name":"MP_E_09","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_09_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_10","studioId":"sE","name":"MP_E_10","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_10_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_11","studioId":"sE","name":"MP_E_11","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_11_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_12","studioId":"sE","name":"MP_E_12","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_12_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_13","studioId":"sE","name":"MP_E_13","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_13_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_14","studioId":"sE","name":"MP_E_14","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_14_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_15","studioId":"sE","name":"MP_E_15","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_15_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_E_16","studioId":"sE","name":"MP_E_16","description":"","styleType":"","industryTags":[],"images":["images/p_MP_E_16_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_F_01","studioId":"sF","name":"MP_F_01","description":"","styleType":"","industryTags":[],"images":["images/p_MP_F_01_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_F_02","studioId":"sF","name":"MP_F_02","description":"","styleType":"","industryTags":[],"images":["images/p_MP_F_02_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_F_03","studioId":"sF","name":"MP_F_03","description":"","styleType":"","industryTags":[],"images":["images/p_MP_F_03_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_F_04","studioId":"sF","name":"MP_F_04","description":"","styleType":"","industryTags":[],"images":["images/p_MP_F_04_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_F_05","studioId":"sF","name":"MP_F_05","description":"","styleType":"","industryTags":[],"images":["images/p_MP_F_05_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_F_06","studioId":"sF","name":"MP_F_06","description":"","styleType":"","industryTags":[],"images":["images/p_MP_F_06_0.jpg"],"createdAt":"2026-09-03"},{"id":"p_MP_F_07","studioId":"sF","name":"MP_F_07","description":"","styleType":"","industryTags":[],"images":["images/p_MP_F_07_0.jpg"],"createdAt":"2026-09-03"}];
+  const DEFAULT_SETTINGS = {"studioImageLimit":20};
+  /*__PRISM_DATA_END__*/
+  function clone(x){ return JSON.parse(JSON.stringify(x)); }
+  const MAX_IMAGE_DIM = 1600;
+  const MAX_IMAGE_BYTES = 1024*1024; // 1MB — IndexedDB 사용으로 용량 여유가 생겨 화질을 높였다
+  let webpOK = null;
+  function supportsWebp(){
+    if(webpOK !== null) return webpOK;
+    try{
+      const c = document.createElement("canvas");
+      c.width = 2; c.height = 2;
+      webpOK = c.toDataURL("image/webp").indexOf("data:image/webp") === 0;
+    }catch(e){ webpOK = false; }
+    return webpOK;
+  }
+  function encodeBest(canvas, maxBytes){
+    // WebP가 되면 WebP, 아니면 JPEG. 화질을 낮춰가며 상한을 맞춘다.
+    const type = supportsWebp() ? "image/webp" : "image/jpeg";
+    let q = 0.86, out = canvas.toDataURL(type, q);
+    let bytes = Math.round(out.length * 3/4);
+    while(bytes > maxBytes && q > 0.42){
+      q -= 0.12;
+      out = canvas.toDataURL(type, q);
+      bytes = Math.round(out.length * 3/4);
+    }
+    return {dataUrl: out, bytes: bytes, type: type, quality: q};
+  }
+  // 이미 디코딩된 <img>에서 영역(sx,sy,sw,sh)을 잘라 리사이즈+인코딩한다.
+  // drawImage는 디코딩을 다시 하지 않고 브라우저가 이미 갖고 있는 픽셀을 그대로 쓴다 — 재디코딩 없음.
+  function resizeEncodeFrom(imgEl, sx, sy, sw, sh, maxDim, maxBytes){
+    let dw = sw, dh = sh;
+    if(dw > maxDim || dh > maxDim){
+      if(dw >= dh){ dh = Math.round(dh * maxDim / dw); dw = maxDim; }
+      else { dw = Math.round(dw * maxDim / dh); dh = maxDim; }
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = dw; canvas.height = dh;
+    canvas.getContext("2d").drawImage(imgEl, sx, sy, sw, sh, 0, 0, dw, dh);
+    return encodeBest(canvas, maxBytes);
+  }
+  function compressFromImage(imgEl, sx, sy, sw, sh, maxDim, maxBytes){
+    let dim = maxDim, best = null;
+    for(let attempt = 0; attempt < 3; attempt++){
+      best = resizeEncodeFrom(imgEl, sx, sy, sw, sh, dim, maxBytes);
+      if(best.bytes <= maxBytes) break;
+      dim = Math.round(dim * 0.75);
+      if(dim < 320) break;
+    }
+    return best;
+  }
+  function compressImageDataUrl(dataUrl, maxDim, maxBytes){
+    maxBytes = maxBytes || MAX_IMAGE_BYTES;
+    return new Promise(function(resolve){
+      let settled = false;
+      function done(v){ if(settled) return; settled = true; resolve(v); }
+      setTimeout(function(){ done(dataUrl); }, 15000); // 안전장치: 무한 대기 방지
+      const approxBytes = Math.round(dataUrl.length * 3/4);
+      const img = new Image();
+      img.onload = function(){
+        let w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+        if(!w || !h){ done(dataUrl); return; }
+        if(w <= maxDim && h <= maxDim && approxBytes <= maxBytes){ done(dataUrl); return; }
+        try{
+          const best = compressFromImage(img, 0, 0, w, h, maxDim, maxBytes);
+          done(best.dataUrl.length < dataUrl.length ? best.dataUrl : dataUrl);
+        }catch(e){ done(dataUrl); }
+      };
+      img.onerror = function(){ done(dataUrl); };
+      img.src = dataUrl;
+    });
+  }
+  function readAndCompressFiles(files){
+    return Promise.all(files.map(function(file){
+      return new Promise(function(resolve){
+        const reader = new FileReader();
+        reader.onload = function(){ compressImageDataUrl(reader.result, MAX_IMAGE_DIM, MAX_IMAGE_BYTES).then(resolve); };
+        reader.onerror = function(){ resolve(null); };
+        reader.readAsDataURL(file);
+      });
+    })).then(function(results){ return results.filter(Boolean); });
+  }
+  function readFilesRaw(files){
+    return Promise.all(files.map(function(file){
+      return new Promise(function(resolve){
+        const reader = new FileReader();
+        reader.onload = function(){ resolve(reader.result); };
+        reader.onerror = function(){ resolve(null); };
+        reader.readAsDataURL(file);
+      });
+    })).then(function(r){ return r.filter(Boolean); });
+  }
+  /* ---- 이미지 트리밍(크롭) ---- */
+  let cropQueue = [];
+  let cropNat = {w:0,h:0};
+  let cropRatio = 1;
+  let cropBoxRect = {x:0,y:0,w:0,h:0};
+  let cropDrag = null;
+  let cropDone = null;
+  let cropResults = [];
+  function cropEls(){
+    return {
+      ov: document.getElementById("crop-overlay"),
+      img: document.getElementById("crop-img"),
+      box: document.getElementById("crop-box"),
+      stage: document.getElementById("crop-stage"),
+      count: document.getElementById("crop-count"),
+      info: document.getElementById("crop-info")
+    };
+  }
+  function startCropQueue(dataUrls, onFinish){
+    cropQueue = dataUrls.slice();
+    cropResults = [];
+    cropDone = onFinish;
+    nextCrop();
+  }
+  function nextCrop(){
+    const e = cropEls();
+    if(!cropQueue.length){
+      e.ov.classList.remove("open");
+      const out = cropResults.slice();
+      cropResults = [];
+      const cb = cropDone; cropDone = null;
+      if(cb) cb(out);
+      return;
+    }
+    const url = cropQueue[0];
+    e.count.textContent = "(남은 이미지 " + cropQueue.length + "개)";
+    e.img.onload = function(){
+      cropNat.w = e.img.naturalWidth; cropNat.h = e.img.naturalHeight;
+      if(!cropNat.w || !cropNat.h){
+        cropQueue.shift();
+        cropResults.push(url); // 디코딩 자체가 안 되는 이미지 — 압축을 재시도해도 똑같이 실패하므로 원본 그대로 사용
+        nextCrop();
+        return;
+      }
+      e.ov.classList.add("open");
+      resetCropBox();
+    };
+    e.img.onerror = function(){
+      cropQueue.shift();
+      cropResults.push(url);
+      nextCrop();
+    };
+    e.img.src = url;
+  }
+  function resetCropBox(){
+    const e = cropEls();
+    const dw = e.img.clientWidth, dh = e.img.clientHeight;
+    let w = dw, h = dh;
+    if(cropRatio > 0){
+      if(dw / dh > cropRatio){ h = dh; w = h * cropRatio; }
+      else { w = dw; h = w / cropRatio; }
+    }
+    cropBoxRect = { x:(dw-w)/2, y:(dh-h)/2, w:w, h:h };
+    drawCropBox();
+  }
+  function drawCropBox(){
+    const e = cropEls();
+    e.box.style.left = cropBoxRect.x + "px";
+    e.box.style.top = cropBoxRect.y + "px";
+    e.box.style.width = cropBoxRect.w + "px";
+    e.box.style.height = cropBoxRect.h + "px";
+    const scale = cropNat.w / (e.img.clientWidth || 1);
+    const pw = Math.round(cropBoxRect.w * scale), ph = Math.round(cropBoxRect.h * scale);
+    e.info.textContent = "선택 영역 " + pw + " x " + ph + "px · 저장 시 최대 " + MAX_IMAGE_DIM + "px · " + formatBytes(MAX_IMAGE_BYTES) + "로 변환됩니다.";
+  }
+  function applyCrop(useWhole){
+    const e = cropEls();
+    const src = cropQueue.shift();
+    const natW = cropNat.w, natH = cropNat.h;
+    let sx = 0, sy = 0, sw = natW, sh = natH;
+    if(!useWhole){
+      const scale = natW / (e.img.clientWidth || 1);
+      sx = Math.max(0, Math.round(cropBoxRect.x * scale));
+      sy = Math.max(0, Math.round(cropBoxRect.y * scale));
+      sw = Math.max(1, Math.min(natW - sx, Math.round(cropBoxRect.w * scale)));
+      sh = Math.max(1, Math.min(natH - sy, Math.round(cropBoxRect.h * scale)));
+    }
+    try{
+      // e.img는 crop-img 미리보기에서 이미 디코딩된 요소 — 여기서 다시 디코딩하지 않고 그대로 그린다.
+      const best = compressFromImage(e.img, sx, sy, sw, sh, MAX_IMAGE_DIM, MAX_IMAGE_BYTES);
+      cropResults.push(best.dataUrl);
+    }catch(err){
+      cropResults.push(src); // 캔버스 처리 실패 시 원본 그대로 보존
+    }
+    nextCrop();
+  }
+  let STUDIOS = [];
+  let POSTS = [];
+  let SETTINGS = {};
+
+  /* ---- 저장소 역할 분리 ----
+     내장 데이터(DEFAULT_*) = 배포용 원본. 항상 이것이 기준이다.
+     localStorage = 이 파일 버전 전용 '초안'. 다른 버전 파일에는 절대 영향을 주지 않는다. */
+  function dataStamp(){
+    return APP_VERSION + "|" + APP_DATE + "|" + DEFAULT_STUDIOS.length + "|" + DEFAULT_POSTS.length;
+  }
+  function draftKey(){ return "prism_draft_v" + APP_VERSION; }
+  let draftState = "none"; // none | restored | mismatch
+  let draftSavedAt = null;
+
+  /* ---- IndexedDB 초안 저장소 ----
+     localStorage는 약 5MB 한도라 이미지가 몇 장만 쌓여도 넘친다.
+     IndexedDB는 훨씬 큰 용량을 쓸 수 있어 이미지를 온전히 보존한다.
+     사용 불가한 환경(일부 시크릿 모드 등)에서는 localStorage로 자동 강등한다. */
+  const IDB_NAME = "prism_portfolio";
+  const IDB_STORE = "drafts";
+  let idbPromise = null;
+  function idbOpen(){
+    if(idbPromise) return idbPromise;
+    idbPromise = new Promise(function(resolve){
+      try{
+        if(!window.indexedDB){ resolve(null); return; }
+        const req = indexedDB.open(IDB_NAME, 1);
+        req.onupgradeneeded = function(){
+          const db = req.result;
+          if(!db.objectStoreNames.contains(IDB_STORE)) db.createObjectStore(IDB_STORE);
+        };
+        req.onsuccess = function(){ resolve(req.result); };
+        req.onerror = function(){ resolve(null); };
+        req.onblocked = function(){ resolve(null); };
+        setTimeout(function(){ resolve(null); }, 4000);
+      }catch(e){ resolve(null); }
+    });
+    return idbPromise;
+  }
+  function idbPut(key, val){
+    return idbOpen().then(function(db){
+      if(!db) return false;
+      return new Promise(function(resolve){
+        try{
+          const tx = db.transaction(IDB_STORE, "readwrite");
+          tx.objectStore(IDB_STORE).put(val, key);
+          tx.oncomplete = function(){ resolve(true); };
+          tx.onerror = function(){ resolve(false); };
+          tx.onabort = function(){ resolve(false); };
+        }catch(e){ resolve(false); }
+      });
+    });
+  }
+  function idbGet(key){
+    return idbOpen().then(function(db){
+      if(!db) return null;
+      return new Promise(function(resolve){
+        try{
+          const tx = db.transaction(IDB_STORE, "readonly");
+          const r = tx.objectStore(IDB_STORE).get(key);
+          r.onsuccess = function(){ resolve(r.result || null); };
+          r.onerror = function(){ resolve(null); };
+        }catch(e){ resolve(null); }
+      });
+    });
+  }
+  function idbDelete(key){
+    return idbOpen().then(function(db){
+      if(!db) return false;
+      return new Promise(function(resolve){
+        try{
+          const tx = db.transaction(IDB_STORE, "readwrite");
+          tx.objectStore(IDB_STORE).delete(key);
+          tx.oncomplete = function(){ resolve(true); };
+          tx.onerror = function(){ resolve(false); };
+        }catch(e){ resolve(false); }
+      });
+    });
+  }
+
+  function loadData(){
+    // 항상 파일 내장 데이터에서 시작한다. 초안은 이후 비동기로 덮어쓴다.
+    STUDIOS = clone(DEFAULT_STUDIOS);
+    POSTS = clone(DEFAULT_POSTS);
+    SETTINGS = Object.assign({studioImageLimit:20}, clone(DEFAULT_SETTINGS||{}));
+    draftState = "none";
+    draftSavedAt = null;
+  }
+  function readLocalDraft(){
+    try{
+      const raw = localStorage.getItem(draftKey());
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+  function restoreDraft(){
+    return idbGet(draftKey()).then(function(d){
+      if(!d) d = readLocalDraft();
+      if(!d){ draftState = "none"; return false; }
+      if(d.stamp === dataStamp() && Array.isArray(d.studios) && Array.isArray(d.posts)){
+        STUDIOS = d.studios;
+        POSTS = d.posts;
+        if(d.settings && typeof d.settings === "object") SETTINGS = Object.assign({studioImageLimit:20}, d.settings);
+        draftState = "restored";
+        draftSavedAt = d.savedAt || null;
+        return true;
+      }
+      // 다른 내용의 파일에서 만들어진 초안 → 내장 데이터를 덮어쓰지 않는다.
+      draftState = "mismatch";
+      return false;
+    }).catch(function(){ draftState = "none"; return false; });
+  }
+  function discardDraft(){
+    idbDelete(draftKey()).then(function(){
+      try{ localStorage.removeItem(draftKey()); }catch(e){}
+      loadData(); render();
+    });
+  }
+  function formatBytes(n){
+    if(n < 1024) return n + "B";
+    if(n < 1024*1024) return (n/1024).toFixed(0) + "KB";
+    return (n/(1024*1024)).toFixed(2) + "MB";
+  }
+  function isDataUrl(s){ return !!s && s.indexOf("data:") === 0; }
+  function dataUrlBytes(s){ return isDataUrl(s) ? Math.round(s.length * 3/4) : 0; }
+  function totalImageBytes(){
+    let n = 0;
+    STUDIOS.forEach(function(s){ n += dataUrlBytes(s.profileImage); });
+    POSTS.forEach(function(p){ (p.images||[]).forEach(function(im){ n += dataUrlBytes(im); }); });
+    return n;
+  }
+  function totalImageCount(){
+    return STUDIOS.filter(function(s){ return !!s.profileImage; }).length
+      + POSTS.reduce(function(a,p){ return a + (p.images||[]).length; }, 0);
+  }
+  function stripImages(obj){
+    const c = JSON.parse(JSON.stringify(obj));
+    if(Array.isArray(c)){
+      c.forEach(function(x){
+        if(x.profileImage) x.profileImage = null;
+        if(x.images) x.images = [];
+      });
+    }
+    return c;
+  }
+  let storageMode = "idb"; // idb | local | nomedia | failed
+  let draftDirty = false;
+  let saveTimer = null;
+  function saveData(){
+    draftDirty = true;
+    if(saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(flushDraft, 200);
+  }
+  function flushDraft(){
+    if(saveTimer){ clearTimeout(saveTimer); saveTimer = null; }
+    if(!draftDirty) return Promise.resolve();
+    const payload = {stamp:dataStamp(), studios:STUDIOS, posts:POSTS, settings:SETTINGS, savedAt:new Date().toISOString()};
+    return idbPut(draftKey(), payload).then(function(ok){
+      if(ok){
+        storageMode = "idb";
+        draftDirty = false;
+        draftSavedAt = payload.savedAt;
+        // IndexedDB에 온전히 저장됐으므로 낡은 localStorage 초안은 정리한다.
+        try{ localStorage.removeItem(draftKey()); }catch(e){}
+        return;
+      }
+      // IndexedDB 사용 불가 → localStorage로 강등
+      try{
+        localStorage.setItem(draftKey(), JSON.stringify(payload));
+        storageMode = "local";
+        draftDirty = false;
+        draftSavedAt = payload.savedAt;
+        return;
+      }catch(e){}
+      try{
+        localStorage.setItem(draftKey(), JSON.stringify({stamp:payload.stamp, studios:stripImages(STUDIOS), posts:stripImages(POSTS), settings:SETTINGS, savedAt:payload.savedAt}));
+        storageMode = "nomedia";
+        draftDirty = false;
+        if(!flushDraft._warned){
+          flushDraft._warned = true;
+          alert("이 브라우저에서는 큰 이미지를 초안으로 보관할 수 없어, 글자 정보만 남겼어요.\n\n이미지는 지금 화면에는 그대로 있지만 새로고침하면 사라집니다.\n작업을 마치면 '새 버전으로 저장'을 눌러 HTML 파일로 보관해주세요. 그 파일에는 이미지가 온전히 들어갑니다.");
+        }
+      }catch(e2){
+        storageMode = "failed";
+        if(!flushDraft._warned2){
+          flushDraft._warned2 = true;
+          alert("이 브라우저에서는 초안을 저장할 수 없어요. 작업 내용은 화면에만 남아 있으니, 새로고침하기 전에 '새 버전으로 저장'을 눌러 HTML로 보관해주세요.");
+        }
+      }
+    });
+  }
+  function resetData(){
+    idbDelete(draftKey()).then(function(){
+      try{ localStorage.removeItem(draftKey()); }catch(e){}
+      loadData(); render();
+    });
+  }
+
+  function getStudio(id){ return STUDIOS.find(s=>s.id===id); }
+  function getPost(id){ return POSTS.find(p=>p.id===id); }
+  function postsByStudio(id){ return POSTS.filter(p=>p.studioId===id); }
+  function visiblePosts(){ return POSTS.filter(function(p){ const st=getStudio(p.studioId); return st && !st.hidden; }); }
+  function studioTopTags(id, max){
+    max = max||3;
+    const counts = {};
+    postsByStudio(id).forEach(function(p){
+      if(!p.styleType) return;
+      counts[p.styleType] = (counts[p.styleType]||0)+1;
+    });
+    return Object.keys(counts).sort(function(a,b){ return counts[b]-counts[a]; }).slice(0,max);
+  }
+  function sortByDateDesc(arr){ return arr.slice().sort(function(a,b){ return new Date(b.createdAt) - new Date(a.createdAt); }); }
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); const t=a[i]; a[i]=a[j]; a[j]=t; }
+    return a;
+  }
+  function hashCode(str){ let h=0; for(let i=0;i<String(str).length;i++){ h=(h*31+String(str).charCodeAt(i))|0; } return h; }
+  function phBg(id){ return MINT_SHADES[Math.abs(hashCode(id))%MINT_SHADES.length]; }
+  function studioAvatarColor(name){ return MINT_SHADES[Math.abs(hashCode(name))%MINT_SHADES.length]; }
+  function studioInitial(name){
+    name = (name||"?").trim();
+    return name.charAt(0) || "?";
+  }
+  function studioDisplayInitial(st){
+    if(st.avatarInitial && st.avatarInitial.trim()) return st.avatarInitial.trim().slice(0,2);
+    return studioInitial(st.name);
+  }
+  function contrastTextColor(hex){
+    const c = (hex||"").replace("#","");
+    if(c.length!==6) return "#ffffff";
+    const r = parseInt(c.slice(0,2),16), g = parseInt(c.slice(2,4),16), b = parseInt(c.slice(4,6),16);
+    if(isNaN(r)||isNaN(g)||isNaN(b)) return "#ffffff";
+    const lum = (0.299*r + 0.587*g + 0.114*b)/255;
+    return lum > 0.6 ? "#141414" : "#ffffff";
+  }
+
+  /* =========================================================
+     2. 좋아요 (개인 저장 · 취향 분석용, 공개 카운트 없음)
+     ========================================================= */
+  function likesStorageKey(){ return "prism_likes_v"+APP_VERSION; }
+  function getLikedIds(){ try{ return JSON.parse(localStorage.getItem(likesStorageKey())||"[]"); }catch(e){ return []; } }
+  function setLikedIds(arr){ localStorage.setItem(likesStorageKey(), JSON.stringify(arr)); }
+
+  function toggleLike(postId){
+    const liked = getLikedIds();
+    const idx = liked.indexOf(postId);
+    if(idx>-1) liked.splice(idx,1); else liked.push(postId);
+    setLikedIds(liked);
+    document.querySelectorAll('[data-like-id="'+postId+'"]').forEach(function(btn){
+      const isLiked = liked.indexOf(postId)>-1;
+      btn.classList.toggle("active", isLiked);
+      btn.setAttribute("aria-pressed", isLiked);
+    });
+    updateLikeBadge();
+    if(currentModalPostId===postId){ renderModal(currentModalPostId, modalIndex); }
+  }
+  function updateLikeBadge(){
+    const n = getLikedIds().length;
+    document.querySelectorAll(".js-like-count").forEach(el=>el.textContent=n);
+    document.querySelectorAll(".like-indicator").forEach(el=>el.classList.toggle("ready", n>=10));
+  }
+
+  const HEART_SVG = '<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+
+  /* =========================================================
+     3. 공통 렌더 유틸 — 태그, 아바타, 갤러리 타일
+     ========================================================= */
+  function tagStaticHTML(name, type){
+    return '<span class="tag-chip '+type+'">'+name+'</span>';
+  }
+  function tagChipHTML(name, type){
+    const attr = type==="style" ? "data-goto-style" : "data-goto-industry";
+    return '<button type="button" class="tag-chip '+type+'" '+attr+'="'+name+'">'+name+'</button>';
+  }
+  function tagToggleHTML(name, type, selectedSet, tooltip){
+    const selected = selectedSet.has(name);
+    return '<button type="button" class="tag-toggle '+type+(selected?" selected":"")+'" data-tag="'+name+'" data-type="'+type+'"'+(tooltip?' title="'+tooltip+'"':'')+'>'+name+'</button>';
+  }
+  function studioAvatarHTML(st, extraClass){
+    const cls = "studio-avatar"+(extraClass?" "+extraClass:"");
+    if(st.profileImage) return '<img class="'+cls+'" src="'+st.profileImage+'" alt="">';
+    const color = st.avatarColor || studioAvatarColor(st.name);
+    const textColor = contrastTextColor(color);
+    return '<div class="'+cls+'" style="background:'+color+';color:'+textColor+'">'+studioDisplayInitial(st)+'</div>';
+  }
+  function tilePhHTML(post){
+    return '<div class="tile-ph" style="background:'+phBg(post.id)+'"><span>'+(post.name||"?").charAt(0)+'</span></div>';
+  }
+  function postTileHTML(post, opts){
+    opts = opts||{};
+    const studio = getStudio(post.studioId);
+    const img = post.images && post.images[0];
+    const liked = getLikedIds().indexOf(post.id)>-1;
+    const meta = (opts.showStudio && studio ? studio.name+" · " : "") + (post.styleType||"");
+    return '<div class="gallery-tile" data-open-post="'+post.id+'" tabindex="0" role="button" aria-label="'+post.name+'">'
+      + (img ? '<img src="'+img+'" alt="">' : tilePhHTML(post))
+      + '<button type="button" class="like-btn tile-like-btn'+(liked?" active":"")+'" data-like-id="'+post.id+'" aria-pressed="'+liked+'" aria-label="좋아요">'+HEART_SVG+'</button>'
+      + '<div class="tile-overlay"><span class="tile-name">'+post.name+'</span>'
+      +   (meta ? '<span class="tile-meta">'+meta+'</span>' : '')
+      + '</div>'
+    + '</div>';
+  }
+  function renderGalleryHTML(posts, opts){
+    opts = opts||{};
+    if(!posts.length) return '<div class="gallery-empty">조건에 맞는 프로젝트가 아직 없어요.</div>';
+    const tiles = posts.map(function(p){ return postTileHTML(p,{showStudio:opts.showStudio}); }).join("");
+    let html = '<div class="gallery-grid">'+tiles+'</div>';
+    if(opts.footer!==false){
+      html += '<div class="gallery-end"><span>모든 프로젝트를 확인했어요</span><button type="button" class="back-btn" data-goback>← 뒤로가기</button></div>';
+    }
+    return html;
+  }
+
+  /* =========================================================
+     4. 홈
+     ========================================================= */
+  const selectedTypes = new Set();
+  const selectedIndustry = new Set();
+  function studioCardThumbsHTML(st){
+    const posts = sortByDateDesc(postsByStudio(st.id)).slice(0,3);
+    const slots = [];
+    for(let i=0;i<3;i++){
+      const p = posts[i];
+      if(!p){ slots.push('<div class="studio-card-thumb studio-card-thumb-empty"></div>'); continue; }
+      const img = p.images && p.images[0];
+      slots.push('<div class="studio-card-thumb"'+(img?'':' style="background:'+phBg(p.id)+'"')+'>'+(img?'<img src="'+img+'" alt="">':'')+'</div>');
+    }
+    return '<div class="studio-card-thumbs">'+slots.join("")+'</div>';
+  }
+  function siteFooterHTML(){
+    return '<footer class="site-footer">마크인포 프리즘 포트폴리오 · v'+APP_VERSION+' · '+APP_DATE+' · <a class="footer-admin-link" href="#/admin">관리자</a></footer>';
+  }
+  function filteredPosts(){
+    return visiblePosts().filter(function(p){
+      const okType = selectedTypes.size===0 || selectedTypes.has(p.styleType);
+      const okInd = selectedIndustry.size===0 || (p.industryTags||[]).some(t=>selectedIndustry.has(t));
+      return okType && okInd;
+    });
+  }
+  const HOME_PAGE_SIZE = 24;
+  let homeAllPosts = [];
+  let homeShownCount = 0;
+  let homeObserver = null;
+  function renderHome(){
+    const anySelected = selectedTypes.size>0 || selectedIndustry.size>0;
+    homeAllPosts = anySelected ? sortByDateDesc(filteredPosts()) : shuffle(visiblePosts());
+    homeShownCount = Math.min(HOME_PAGE_SIZE, homeAllPosts.length);
+    const posts = homeAllPosts.slice(0, homeShownCount);
+    const styleChips = TYPES_16.map(t=>tagToggleHTML(t.name,"style",selectedTypes)).join("");
+    const indChips = INDUSTRY_TAGS.map(t=>tagToggleHTML(t.name,"industry",selectedIndustry,t.desc)).join("");
+    const hasMore = homeShownCount < homeAllPosts.length;
+    return ''
+    + '<section class="hero">'
+    +   '<div class="eyebrow"><span class="rule"></span>MARKINFO PRISM PORTFOLIO</div>'
+    +   '<h1>내가 원하는 스타일의<br>로고를 찾아보세요</h1>'
+    +   '<p class="sub">다양한 스타일의 로고를 둘러보고,<br>내가 원하는 스타일을 만들어본 디자이너를 찾아보세요.</p>'
+    + '</section>'
+    + '<section class="tag-section">'
+    +   '<div class="tag-section-title"><h2>스타일 태그</h2><span>브랜드 스타일 매트릭스 16</span></div>'
+    +   '<div class="tag-cloud">'+styleChips+'</div>'
+    + '</section>'
+    + '<section class="tag-section">'
+    +   '<div class="tag-section-title"><h2>업종 태그</h2></div>'
+    +   '<div class="tag-cloud">'+indChips+'</div>'
+    +   (anySelected ? '<div class="tag-clear-row"><button type="button" class="tag-clear-btn" data-clear-tags>필터 초기화</button></div>' : '')
+    + '</section>'
+    + '<section class="home-explore">'
+    +   '<div class="explore-label"><span>'+(anySelected ? '선택한 조건에 맞는 로고예요' : '다양한 스튜디오의 포트폴리오를 둘러보세요')+'</span></div>'
+    +   renderGalleryHTML(posts, {showStudio:true, footer:false})
+    +   (hasMore ? '<div id="home-load-sentinel" class="home-load-sentinel"></div><div class="home-load-spinner" id="home-load-spinner">더 불러오는 중…</div>' : '')
+    + '</section>';
+  }
+  function loadMoreHomePosts(){
+    if(homeShownCount >= homeAllPosts.length) return;
+    const next = homeAllPosts.slice(homeShownCount, homeShownCount + HOME_PAGE_SIZE);
+    homeShownCount += next.length;
+    const grid = document.querySelector(".home-explore .gallery-grid");
+    if(grid) grid.insertAdjacentHTML("beforeend", next.map(function(p){ return postTileHTML(p,{showStudio:true}); }).join(""));
+    if(homeShownCount >= homeAllPosts.length){
+      if(homeObserver){ homeObserver.disconnect(); homeObserver = null; }
+      const sentinel = document.getElementById("home-load-sentinel");
+      const spinner = document.getElementById("home-load-spinner");
+      if(sentinel) sentinel.remove();
+      if(spinner) spinner.remove();
+    }
+  }
+  function setupHomeInfiniteScroll(){
+    if(homeObserver){ homeObserver.disconnect(); homeObserver = null; }
+    const sentinel = document.getElementById("home-load-sentinel");
+    if(!sentinel || typeof IntersectionObserver === "undefined") return;
+    homeObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){ if(entry.isIntersecting) loadMoreHomePosts(); });
+    }, {rootMargin:"800px 0px"});
+    homeObserver.observe(sentinel);
+  }
+  function mountHome(){
+    document.getElementById("app").innerHTML = renderHome() + siteFooterHTML();
+    setupHomeInfiniteScroll();
+  }
+
+  /* =========================================================
+     6. 스튜디오 프로필 (이미지 중심 갤러리, 최신순, 유한 리스트)
+     스튜디오 목록 페이지는 없앴지만, 개별 스튜디오 데이터와 페이지는 그대로 남아있다.
+     스튜디오 이름(게시물 상세 모달, 취향 분석 추천)을 통해 접근한다.
+     ========================================================= */
+  function studioHeaderHTML(st){
+    return '<div class="studio-header">'
+      + studioAvatarHTML(st,"lg")
+      + '<div class="studio-header-info">'
+      +   '<h1>'+st.name+'</h1>'
+      +   '<p class="studio-bio">'+st.bio+'</p>'
+      +   '<div class="studio-tags">'+studioTopTags(st.id,3).map(t=>tagChipHTML(t,"style")).join("")+'</div>'
+      + '</div>'
+    + '</div>';
+  }
+  function renderStudioPage(id){
+    const st = getStudio(id);
+    if(!st || st.hidden) return '<div class="gallery-empty">스튜디오를 찾을 수 없어요.<br><a href="#/">홈으로 →</a></div>';
+    const posts = sortByDateDesc(postsByStudio(id));
+    return studioHeaderHTML(st) + renderGalleryHTML(posts, {showStudio:false});
+  }
+  function toggleTypeFilter(name, type){
+    const set = type==="style" ? selectedTypes : selectedIndustry;
+    if(set.has(name)) set.delete(name); else set.add(name);
+    mountHome();
+  }
+  function gotoTagFilter(name, type){
+    if(type==="style"){ selectedTypes.clear(); selectedTypes.add(name); selectedIndustry.clear(); }
+    else { selectedIndustry.clear(); selectedIndustry.add(name); selectedTypes.clear(); }
+    location.hash = "#/";
+    render();
+  }
+
+  /* =========================================================
+     8. 좋아요 페이지 + 취향 분석
+     ========================================================= */
+  function computeTally(likedPosts){
+    const tally = { weight:{G:0,L:0}, energy:{B:0,S:0}, persuasion:{E:0,R:0}, era:{C:0,M:0} };
+    likedPosts.forEach(function(p){
+      const t = typeByName(p.styleType);
+      if(!t) return;
+      const d = decodeCode(t.code);
+      tally.weight[d.weight]++; tally.energy[d.energy]++; tally.persuasion[d.persuasion]++; tally.era[d.era]++;
+    });
+    return tally;
+  }
+  function resultTypeFromTally(tally){
+    const code = (tally.weight.G>=tally.weight.L?"G":"L")
+      + (tally.energy.B>=tally.energy.S?"B":"S")
+      + (tally.persuasion.E>=tally.persuasion.R?"E":"R")
+      + (tally.era.C>=tally.era.M?"C":"M");
+    return TYPES_16.find(t=>t.code===code) || TYPES_16[0];
+  }
+  function recommendStudios(resultType){
+    const scored = STUDIOS.map(function(st){
+      let score = 0;
+      postsByStudio(st.id).forEach(function(p){
+        const t = typeByName(p.styleType);
+        if(!t) return;
+        for(let i=0;i<4;i++){ if(t.code[i]===resultType.code[i]) score++; }
+      });
+      return {studio:st, score:score};
+    }).sort(function(a,b){ return b.score-a.score; });
+    return scored.filter(s=>s.score>0).slice(0,2).map(s=>s.studio);
+  }
+  function axisBarRowHTML(letterA, labelA, letterB, labelB, countA, countB){
+    const total = (countA+countB) || 1;
+    const pctA = Math.round(countA/total*100);
+    return '<div class="axis-bar-row"><span class="axis-label-a">'+labelA+'</span>'
+      + '<div class="axis-bar"><div class="axis-bar-fill" style="width:'+pctA+'%"></div></div>'
+      + '<span class="axis-label-b">'+labelB+'</span></div>';
+  }
+  function renderLiked(){
+    const likedIds = getLikedIds();
+    const likedPosts = sortByDateDesc(POSTS.filter(p=>likedIds.indexOf(p.id)>-1));
+    const goal = 10;
+    const pct = Math.min(100, Math.round(likedIds.length/goal*100));
+    let topBlock;
+    if(likedIds.length===0){
+      topBlock = '<div class="liked-progress">'
+        + '<div class="progress-top"><strong>취향 분석</strong><span>0 / '+goal+'</span></div>'
+        + '<div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>'
+        + '<p class="progress-msg">마음에 드는 프로젝트에 좋아요를 눌러보세요. '+goal+'개 정도 모이면 어떤 브랜드 스타일을 선호하는지 분석해드려요.</p>'
+      + '</div>';
+    } else if(likedIds.length<goal){
+      const remain = goal-likedIds.length;
+      topBlock = '<div class="liked-progress">'
+        + '<div class="progress-top"><strong>취향 분석</strong><span>'+likedIds.length+' / '+goal+'</span></div>'
+        + '<div class="progress-track"><div class="progress-fill" style="width:'+pct+'%"></div></div>'
+        + '<p class="progress-msg">'+remain+'개만 더 좋아요를 누르면 나의 브랜드 스타일 분석 결과가 나와요.</p>'
+      + '</div>';
+    } else {
+      const tally = computeTally(likedPosts);
+      const rt = resultTypeFromTally(tally);
+      const recs = recommendStudios(rt);
+      const recHTML = recs.length ? recs.map(function(st){
+        return '<a class="rec-studio-item" href="#/studio/'+st.id+'">'+studioAvatarHTML(st)+'<span class="studio-name">'+st.name+'</span></a>';
+      }).join("") : '<p class="progress-msg">아직 뚜렷하게 맞는 스튜디오가 없어요.</p>';
+      topBlock = '<div class="type-hero">'
+        + '<div class="type-hero-top"><span class="badge">취향 분석 결과 · '+likedIds.length+'개 기반</span></div>'
+        + '<div class="type-hero-code">'+rt.code.split("").join(" · ")+'</div>'
+        + '<h2>'+rt.name+'</h2>'
+        + '<p class="type-hero-desc">'+rt.detail+'. 마음에 든 프로젝트들의 공통된 방향을 브랜드 스타일 매트릭스16 기준으로 분석한 결과입니다.</p>'
+        + '<div class="axis-bars">'
+        +   axisBarRowHTML("G",AXES.weight.letters.G,"L",AXES.weight.letters.L, tally.weight.G, tally.weight.L)
+        +   axisBarRowHTML("B",AXES.energy.letters.B,"S",AXES.energy.letters.S, tally.energy.B, tally.energy.S)
+        +   axisBarRowHTML("E",AXES.persuasion.letters.E,"R",AXES.persuasion.letters.R, tally.persuasion.E, tally.persuasion.R)
+        +   axisBarRowHTML("C",AXES.era.letters.C,"M",AXES.era.letters.M, tally.era.C, tally.era.M)
+        + '</div>'
+        + '<div class="fit-tags-label">이런 업종에 잘 어울려요</div>'
+        + '<div class="fit-tags">'+rt.fit.map(f=>'<span class="tag-chip">'+f+'</span>').join("")+'</div>'
+        + '<div class="rec-title">이 스타일에 가까운 스튜디오</div>'
+        + '<div class="rec-studios">'+recHTML+'</div>'
+      + '</div>';
+    }
+    if(!likedPosts.length){
+      return topBlock + '<div class="gallery-empty">아직 저장한 프로젝트가 없어요.<br>마음에 드는 로고에 좋아요를 눌러보세요.<br><br><a href="#/">스타일 태그 둘러보기 →</a></div>';
+    }
+    return topBlock + '<div class="page-head" style="padding-top:6px;"><h1>저장한 프로젝트</h1></div>' + renderGalleryHTML(likedPosts,{showStudio:true, footer:false});
+  }
+
+  /* =========================================================
+     9. 팝업 모달
+     ========================================================= */
+  let currentModalPostId = null, modalIndex = 0;
+  function openPostModal(postId){ currentModalPostId=postId; modalIndex=0; renderModal(postId,0); document.getElementById("modal-overlay").classList.add("open"); }
+  function closeModal(){ document.getElementById("modal-overlay").classList.remove("open"); currentModalPostId=null; }
+  function shiftModalImage(delta){
+    const post = getPost(currentModalPostId); if(!post) return;
+    const n = (post.images&&post.images.length) || 1;
+    modalIndex = (modalIndex+delta+n)%n;
+    renderModal(currentModalPostId, modalIndex);
+  }
+  function renderModal(postId, index){
+    const post = getPost(postId); if(!post) return;
+    const studio = getStudio(post.studioId) || {id:"",name:""};
+    const liked = getLikedIds().indexOf(post.id)>-1;
+    const images = (post.images&&post.images.length) ? post.images : [null];
+    const n = images.length;
+    const cur = images[index];
+    const dots = n>1 ? Array.from({length:n}).map((_,i)=>'<span class="modal-dot'+(i===index?" active":"")+'"></span>').join("") : "";
+    const type = typeByName(post.styleType);
+    document.getElementById("modal-content").innerHTML =
+      '<button class="modal-close" data-modal-close>✕</button>'
+      + '<div class="modal-media">'
+      +   (cur ? '<img src="'+cur+'" alt="">' : tilePhHTML(post))
+      +   (n>1 ? '<button class="modal-prev" data-modal-prev>‹</button><button class="modal-next" data-modal-next>›</button><div class="modal-dots">'+dots+'</div>' : "")
+      + '</div>'
+      + '<div class="modal-body">'
+      +   '<a class="modal-studio-link" href="#/studio/'+studio.id+'">'+studio.name+'</a>'
+      +   '<h3 class="modal-name">'+post.name+'</h3>'
+      +   '<p class="modal-desc">'+post.description+'</p>'
+      +   '<div class="modal-tags">'+(type?tagChipHTML(type.name,"style"):"")+(post.industryTags||[]).map(t=>tagChipHTML(t,"industry")).join("")+'</div>'
+      +   '<div class="modal-like-row">'
+      +     '<button class="like-btn'+(liked?" active":"")+'" data-like-id="'+post.id+'" aria-pressed="'+liked+'">'+HEART_SVG+'</button>'
+      +     (shouldShowHint() ? '<div class="hint-bubble"><span>좋아요를 눌러 내 취향을 알아보세요</span><button type="button" class="hint-close" data-dismiss-hint aria-label="닫기">✕</button></div>' : "")
+      +   '</div>'
+      + '</div>';
+  }
+  function shouldShowHint(){
+    return getLikedIds().length===0 && localStorage.getItem("prism_hint_dismissed_v1")!=="1";
+  }
+  function dismissHint(){
+    localStorage.setItem("prism_hint_dismissed_v1","1");
+    if(currentModalPostId) renderModal(currentModalPostId, modalIndex);
+  }
+
+  /* =========================================================
+     10. 관리자 패널 (#admin)
+     ========================================================= */
+  let adminTab = "studios";
+  let sheetUploadStudio = null;
+  let sheetBulkProgress = null; // {done,total} | null
+  let adminEditingStudioId = null;
+  let adminEditingPostId = null;
+  let adminEditingPostStudioId = null;
+  let adminModalImages = [];
+  let pendingImageOps = 0;
+  function beginImageOp(){ pendingImageOps += 1; updateBusyUI(); }
+  function endImageOp(){ pendingImageOps = Math.max(0, pendingImageOps-1); updateBusyUI(); }
+  function updateBusyUI(){
+    const busy = pendingImageOps > 0;
+    document.querySelectorAll('[data-admin-action="save-new-version"],[data-admin-action="save-post-modal"],[data-admin-action="optimize-images"],[data-admin-action="export-web-zip"]').forEach(function(b){
+      b.disabled = busy;
+      b.style.opacity = busy ? "0.5" : "";
+      b.style.cursor = busy ? "not-allowed" : "";
+    });
+    const hint = document.querySelector(".admin-save-hint");
+    if(hint){
+      if(busy){ hint.dataset.orig = hint.dataset.orig || hint.textContent; hint.textContent = "이미지 처리 중… 끝나면 저장할 수 있어요."; }
+      else if(hint.dataset.orig){ hint.textContent = hint.dataset.orig; }
+    }
+  }
+  let adminModalDirty = false;
+  let adminModalSaving = false;
+  let adminOverlayMouseDownOnBackdrop = false;
+
+  function renderAdmin(){
+    const nextV = nextVersion(APP_VERSION);
+    const draftNote = draftState === "restored"
+      ? '<div class="admin-note admin-note-warn">이 브라우저에 저장된 <strong>초안(v'+APP_VERSION+')</strong>을 불러왔습니다. 파일에 확정하려면 아래에서 새 버전으로 저장하세요. <button type="button" class="admin-btn ghost" data-admin-action="discard-draft">초안 버리고 파일 내용으로 되돌리기</button></div>'
+      : (draftState === "mismatch"
+        ? '<div class="admin-note">이 브라우저에 다른 내용의 초안이 남아 있어 무시했습니다. 지금 보이는 내용은 <strong>파일에 담긴 원본</strong>입니다. <button type="button" class="admin-btn ghost" data-admin-action="discard-draft">남은 초안 삭제</button></div>'
+        : "");
+    return '<div class="page-head"><h1>관리자 패널</h1><p>포트폴리오 데이터와 이미지를 편집합니다.</p></div>'
+    + draftNote
+    + '<div class="admin-note"><strong>파일이 원본입니다.</strong> 이 화면의 수정은 우선 이 브라우저의 <strong>초안</strong>으로만 남습니다(v'+APP_VERSION+' 전용). 배포하거나 다른 기기에서 쓰려면 반드시 새 버전으로 저장해 HTML 파일을 받아두세요.'
+    +   '<div class="admin-save-row"><button type="button" class="admin-btn" data-admin-action="save-new-version">현재 상태를 새 버전으로 저장 (v'+nextV+')</button><span class="admin-save-hint">데이터가 반영된 새 HTML 파일을 다운로드합니다.</span></div>'
+    + '</div>'
+    + '<div class="admin-tabs">'
+    +   '<button type="button" class="admin-tab'+(adminTab==="studios"?" active":"")+'" data-admin-tab="studios">스튜디오 관리</button>'
+    +   '<button type="button" class="admin-tab'+(adminTab==="sheet"?" active":"")+'" data-admin-tab="sheet">시트</button>'
+    +   '<button type="button" class="admin-tab'+(adminTab==="settings"?" active":"")+'" data-admin-tab="settings">설정</button>'
+    +   '<button type="button" class="admin-tab'+(adminTab==="export"?" active":"")+'" data-admin-tab="export">데이터 내보내기</button>'
+    + '</div>'
+    + '<div id="admin-body">'+renderAdminBody()+'</div>';
+  }
+  function renderAdminBody(){
+    if(adminTab==="studios") return adminEditingStudioId ? renderAdminStudioEdit(adminEditingStudioId) : renderAdminStudiosGrid();
+    if(adminTab==="sheet") return renderAdminSheet();
+    if(adminTab==="settings") return renderAdminSettings();
+    return renderAdminExport();
+  }
+  function refreshAdminBody(){
+    const el = document.getElementById("admin-body");
+    if(el) el.innerHTML = renderAdminBody();
+  }
+
+  function renderAdminStudiosGrid(){
+    const cards = STUDIOS.map(function(st){
+      return '<button type="button" class="studio-card admin-studio-card" data-admin-action="edit-studio" data-id="'+st.id+'">'
+        + studioCardThumbsHTML(st)
+        + '<div class="studio-card-body">'
+        +   '<div class="studio-card-row">'+studioAvatarHTML(st)+'<span class="studio-name">'+st.name+'</span>'+(st.hidden?'<span class="admin-hidden-badge">가려짐</span>':'')+'</div>'
+        +   '<div class="studio-tags">'+studioTopTags(st.id,3).map(t=>tagStaticHTML(t,"style")).join("")+'</div>'
+        + '</div>'
+      + '</button>';
+    }).join("");
+    const addTile = '<button type="button" class="studio-card admin-add-card" data-admin-action="new-studio">'
+      + '<div class="admin-add-plus">+</div><span class="studio-name">새 스튜디오</span>'
+    + '</button>';
+    return '<div class="admin-block"><h2>등록된 스튜디오 ('+STUDIOS.length+')</h2>'
+      + '<div class="studio-grid">'+cards+addTile+'</div>'
+    + '</div>';
+  }
+  function renderAdminStudioEdit(id){
+    const st = getStudio(id);
+    if(!st){ adminEditingStudioId=null; return renderAdminStudiosGrid(); }
+    const topTags = studioTopTags(id,3);
+    const currentColor = st.avatarColor || studioAvatarColor(st.name);
+    return '<button type="button" class="back-link" data-admin-action="back-to-studios">← 스튜디오 목록으로</button>'
+      + '<div class="admin-preview-label">다음과 같이 표시됩니다</div>'
+      + '<div class="admin-preview-box">'+studioHeaderHTML(st)+'</div>'
+      + (st.hidden ? '<div class="admin-note admin-note-warn">이 스튜디오는 현재 <strong>가려짐</strong> 상태예요. 방문자에게 보이지 않아요.</div>' : "")
+      + '<div class="admin-block"><div class="admin-item">'
+      +   '<div class="admin-studio-form">'
+      +     '<div class="admin-form-col">'
+      +       '<div class="admin-row"><label>프로필 이미지</label>'
+      +         (st.profileImage ? '<div class="admin-image-list"><div class="admin-image-thumb"><img src="'+st.profileImage+'"><button type="button" class="remove-btn" data-admin-action="remove-profile-image" data-id="'+st.id+'">×</button></div></div>' : "")
+      +         '<input type="file" accept="image/*" class="admin-file-input" data-entity="studio" data-id="'+st.id+'" data-field="profileImage">'
+      +       '</div>'
+      +       '<div class="admin-row"><label>프로필 이미지가 없을 때 배경색</label><br>'
+      +         '<input type="color" class="admin-color-input" data-entity="studio" data-id="'+st.id+'" data-field="avatarColor" value="'+currentColor+'">'
+      +       '</div>'
+      +       '<div class="admin-row"><label>이니셜 (프로필 이미지가 없을 때 표시)</label>'
+      +         '<input type="text" maxlength="2" placeholder="예: 우연" data-entity="studio" data-id="'+st.id+'" data-field="avatarInitial" value="'+(st.avatarInitial||"")+'">'
+      +         '<p class="admin-hint">비워두면 스튜디오명 마지막 단어에서 자동으로 추출해요.</p>'
+      +       '</div>'
+      +     '</div>'
+      +     '<div class="admin-form-col">'
+      +       '<div class="admin-row"><label>스튜디오명</label><input type="text" data-entity="studio" data-id="'+st.id+'" data-field="name" value="'+st.name+'"></div>'
+      +       '<div class="admin-row"><label>소개</label><textarea data-entity="studio" data-id="'+st.id+'" data-field="bio">'+st.bio+'</textarea></div>'
+      +       '<div class="admin-row"><label>대표 스타일 (자동 계산)</label>'
+      +         '<div class="tag-cloud">'+(topTags.length?topTags.map(t=>tagStaticHTML(t,"style")).join(""):'<span class="progress-msg">아직 게시물이 없어 계산되지 않았어요.</span>')+'</div>'
+      +         '<p class="admin-hint">게시물에 설정한 스타일 중 가장 많이 쓰인 순서로 최대 3개까지 자동 표시돼요. 직접 고를 수 없어요.</p>'
+      +       '</div>'
+      +     '</div>'
+      +   '</div>'
+      +   '<div class="admin-actions">'
+      +     '<button type="button" class="admin-btn ghost" data-admin-action="toggle-hide-studio" data-id="'+st.id+'">'+(st.hidden?"보이기":"가리기")+'</button>'
+      +     '<button type="button" class="admin-btn danger" data-admin-action="delete-studio" data-id="'+st.id+'">삭제</button>'
+      +   '</div>'
+      + '</div></div>'
+      + renderStudioPostsSection(id);
+  }
+
+  function adminPostTileHTML(p){
+    const img = p.images && p.images[0];
+    return '<button type="button" class="gallery-tile admin-post-tile" data-admin-action="edit-post" data-id="'+p.id+'">'
+      + (img ? '<img src="'+img+'" alt="">' : tilePhHTML(p))
+      + '<div class="tile-overlay admin-tile-overlay"><span class="tile-name">'+p.name+'</span></div>'
+    + '</button>';
+  }
+  function renderStudioPostsSection(studioId){
+    const st = getStudio(studioId);
+    if(!st) return "";
+    const posts = sortByDateDesc(postsByStudio(studioId));
+    const tiles = posts.map(adminPostTileHTML).join("");
+    const limit = SETTINGS.studioImageLimit || 20;
+    const atLimit = posts.length >= limit;
+    const addTile = atLimit ? "" : '<button type="button" class="gallery-tile admin-add-tile" data-admin-action="new-post" data-studio="'+st.id+'"><div class="admin-add-plus">+</div></button>';
+    return '<div class="admin-block"><h2>'+st.name+' · 게시물 ('+posts.length+'/'+limit+')</h2>'
+      + '<div class="gallery-grid">'+tiles+addTile+'</div>'
+      + (atLimit ? '<p class="admin-hint">스튜디오당 게시물은 최대 '+limit+'개까지 등록할 수 있어요. 관리자 &gt; 설정에서 바꿀 수 있어요.</p>' : "")
+    + '</div>';
+  }
+
+  function sheetRowHTML(p){
+    const img = p.images && p.images[0];
+    const studioOpts = STUDIOS.map(function(s){ return '<option value="'+s.id+'"'+(s.id===p.studioId?" selected":"")+'>'+s.name+'</option>'; }).join("");
+    const typeOpts = '<option value="">-</option>' + TYPES_16.map(function(t){ return '<option value="'+t.name+'"'+(t.name===p.styleType?" selected":"")+'>'+t.name+'</option>'; }).join("");
+    const pathLabel = img ? (isDataUrl(img) ? "(새로 올린 이미지)" : img) : "";
+    const esc = function(s){ return (s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;"); };
+    return '<tr data-sheet-row="'+p.id+'">'
+      + '<td><div class="sheet-thumb-cell">'
+      +   (img ? '<img class="sheet-thumb" src="'+img+'" data-sheet-check-img alt="">' : '<div class="sheet-thumb-broken">이미지<br>없음</div>')
+      +   '<span class="sheet-path" title="'+esc(pathLabel)+'">'+esc(pathLabel)+'</span>'
+      + '</div></td>'
+      + '<td><select data-sheet-field="studioId">'+studioOpts+'</select></td>'
+      + '<td><input type="text" data-sheet-field="name" value="'+esc(p.name)+'"></td>'
+      + '<td><input type="text" data-sheet-field="description" value="'+esc(p.description)+'"></td>'
+      + '<td><select data-sheet-field="styleType">'+typeOpts+'</select></td>'
+      + '<td><input type="text" data-sheet-field="industryTags" value="'+esc((p.industryTags||[]).join(", "))+'" placeholder="쉼표로 구분"></td>'
+      + '<td class="sheet-path">'+esc(p.createdAt)+'</td>'
+      + '<td><button type="button" class="sheet-row-del" data-admin-action="delete-sheet-post" data-id="'+p.id+'" aria-label="삭제">×</button></td>'
+    + '</tr>';
+  }
+  function renderAdminSheet(){
+    const limit = SETTINGS.studioImageLimit || 20;
+    if(!STUDIOS.length){
+      return '<div class="admin-block"><h2>전체 게시물 시트</h2><div class="sheet-empty">먼저 스튜디오 관리 탭에서 스튜디오를 하나 이상 등록해주세요.</div></div>';
+    }
+    const targetId = (sheetUploadStudio && getStudio(sheetUploadStudio)) ? sheetUploadStudio : STUDIOS[0].id;
+    sheetUploadStudio = targetId;
+    const studioOptions = STUDIOS.map(function(s){
+      const cnt = postsByStudio(s.id).length;
+      return '<option value="'+s.id+'"'+(s.id===targetId?" selected":"")+'>'+s.name+' ('+cnt+'/'+limit+')</option>';
+    }).join("");
+    const rows = sortByDateDesc(POSTS.slice()).map(sheetRowHTML).join("");
+    const progressHTML = sheetBulkProgress ? ('업로드 중… '+sheetBulkProgress.done+' / '+sheetBulkProgress.total) : "";
+    return '<div class="admin-block">'
+      + '<h2>전체 게시물 시트 ('+POSTS.length+'개)</h2>'
+      + '<p class="admin-hint">표에서 셀을 눌러 바로 수정할 수 있어요. 여러 이미지를 한 번에 올리면 선택한 스튜디오에 게시물이 자동으로 만들어지고, 이미지가 실제로 뜨는지도 이 화면에서 바로 확인돼요.</p>'
+      + '<div class="sheet-toolbar">'
+      +   '<select id="sheet-upload-studio">'+studioOptions+'</select>'
+      +   '<label class="sheet-upload-btn">+ 이미지 여러 장 업로드<input type="file" accept="image/*" multiple id="sheet-bulk-file"></label>'
+      +   '<span class="sheet-progress" id="sheet-progress">'+progressHTML+'</span>'
+      + '</div>'
+      + (POSTS.length ? ('<div class="sheet-wrap"><table class="sheet-table"><thead><tr>'
+          + '<th style="width:190px">이미지</th><th style="width:110px">스튜디오</th><th style="width:150px">프로젝트명</th><th>설명</th><th style="width:110px">스타일</th><th style="width:160px">업종 태그</th><th style="width:90px">등록일</th><th></th>'
+        + '</tr></thead><tbody>'+rows+'</tbody></table></div>')
+        : '<div class="sheet-empty">아직 게시물이 없어요. 위에서 이미지를 올려 시작해보세요.</div>')
+    + '</div>';
+  }
+  function bulkUploadToStudio(studioId, fileList){
+    const files = Array.from(fileList||[]);
+    if(!files.length) return;
+    const limit = SETTINGS.studioImageLimit || 20;
+    const already = postsByStudio(studioId).length;
+    const room = Math.max(0, limit - already);
+    if(room <= 0){
+      alert("이 스튜디오는 이미 제한("+limit+"개)에 도달했어요. 설정 탭에서 제한을 늘리거나 기존 게시물을 정리해주세요.");
+      return;
+    }
+    const toProcess = files.slice(0, room);
+    const skipped = files.length - toProcess.length;
+    beginImageOp();
+    const results = [];
+    sheetBulkProgress = {done:0, total:toProcess.length};
+    updateSheetProgressUI();
+    function processNext(i){
+      if(i >= toProcess.length){
+        POSTS.push.apply(POSTS, results);
+        saveData();
+        endImageOp();
+        sheetBulkProgress = null;
+        refreshAdminBody();
+        if(skipped > 0) alert("스튜디오 제한("+limit+"개)을 넘어서는 "+skipped+"장은 올리지 않았어요. 나머지 "+results.length+"장은 새 게시물로 추가됐습니다.");
+        return;
+      }
+      const file = toProcess[i];
+      const reader = new FileReader();
+      reader.onload = function(){
+        compressImageDataUrl(reader.result, MAX_IMAGE_DIM, MAX_IMAGE_BYTES).then(function(dataUrl){
+          const baseName = (file.name||"제목 없음").replace(/\.[^.]+$/,"");
+          results.push({id:"p"+Date.now()+"-"+Math.random().toString(36).slice(2,7), studioId:studioId, name:baseName, description:"", styleType:"", industryTags:[], images:[dataUrl], createdAt:new Date().toISOString().slice(0,10)});
+          sheetBulkProgress = {done: sheetBulkProgress.done+1, total: toProcess.length};
+          updateSheetProgressUI();
+          processNext(i+1);
+        });
+      };
+      reader.onerror = function(){
+        sheetBulkProgress = {done: sheetBulkProgress.done+1, total: toProcess.length};
+        processNext(i+1);
+      };
+      reader.readAsDataURL(file);
+    }
+    processNext(0);
+  }
+  function updateSheetProgressUI(){
+    const el = document.getElementById("sheet-progress");
+    if(el) el.textContent = sheetBulkProgress ? ("업로드 중… "+sheetBulkProgress.done+" / "+sheetBulkProgress.total) : "";
+  }
+  function renderAdminSettings(){
+    const limit = SETTINGS.studioImageLimit || 20;
+    const overLimit = STUDIOS.map(function(st){ return {st:st, count:postsByStudio(st.id).length}; }).filter(function(x){ return x.count > limit; });
+    return '<div class="admin-block"><h2>업로드 제한</h2>'
+      + '<div class="admin-item">'
+      +   '<div class="admin-row"><label>스튜디오별 최대 게시물(이미지) 수</label>'
+      +     '<input type="text" inputmode="numeric" style="max-width:120px" id="settings-studio-limit" value="'+limit+'">'
+      +   '</div>'
+      +   '<p class="admin-hint">각 스튜디오가 등록할 수 있는 게시물(이미지) 개수의 상한이에요. 기본값은 20개입니다. 값을 바꾸면 즉시 이 브라우저의 초안에 반영되고, 다른 화면의 "게시물 추가" 버튼과 시트 탭의 업로드에도 바로 적용돼요.</p>'
+      +   '<div class="admin-actions"><button type="button" class="admin-btn ghost" data-admin-action="save-settings">저장</button></div>'
+      + '</div>'
+      + (overLimit.length ? '<div class="admin-note admin-note-warn">이미 제한을 초과한 스튜디오가 있어요: '+overLimit.map(function(x){ return x.st.name+' ('+x.count+'개)'; }).join(", ")+'. 기존 게시물은 지워지지 않지만, 제한을 넘는 동안은 새 게시물을 추가할 수 없어요.</div>' : "")
+    + '</div>';
+  }
+  function renderAdminExport(){
+    const json = JSON.stringify({studios:STUDIOS, posts:POSTS}, null, 2);
+    const imgBytes = totalImageBytes();
+    const imgCount = totalImageCount();
+    const memCount = STUDIOS.filter(s=>isDataUrl(s.profileImage)).length
+      + POSTS.reduce(function(a,p){ return a + (p.images||[]).filter(isDataUrl).length; }, 0);
+    const fileCount = imgCount - memCount;
+    const degraded = (storageMode === "nomedia" || storageMode === "failed");
+    const modeNote = storageMode === "idb"
+      ? '초안 저장: <strong>정상 (IndexedDB)</strong> — 이미지까지 함께 보관됩니다.'
+      : (storageMode === "local"
+        ? '초안 저장: 간이 모드(localStorage) — 용량이 커지면 이미지가 빠질 수 있어요.'
+        : (storageMode === "nomedia"
+          ? '초안 저장: <strong>글자만 저장됨</strong> — 이미지는 새로고침 시 사라집니다. HTML로 저장해주세요.'
+          : '초안 저장: <strong>실패</strong> — 화면에만 남아 있습니다. HTML로 저장해주세요.'));
+    const savedNote = draftSavedAt ? '<br>마지막 초안 저장: ' + draftSavedAt.replace("T"," ").slice(0,16) : "";
+    return '<div class="admin-block"><h2>용량 현황</h2>'
+      + '<div class="admin-note'+(degraded?' admin-note-warn':'')+'">'
+      +   '전체 이미지 '+imgCount+'개 (이미지 폴더 '+fileCount+'개 · 이 화면에 새로 올린 이미지 '+memCount+'개) · 새로 올린 이미지 합계 <strong>'+formatBytes(imgBytes)+'</strong><br>'
+      +   modeNote
+      +   savedNote
+      + '</div>'
+      + '<div class="admin-actions">'
+      +   '<button type="button" class="admin-btn" data-admin-action="optimize-images">이미지 일괄 최적화 (1600px · 1MB)</button>'
+      + '</div>'
+      + '<p class="admin-hint">이미 이미지 폴더로 분리된 이미지는 건드리지 않아요. 이미 1600px · 1MB 이하인 이미지도 그대로 둬요. 원본 화질로 되돌릴 수는 없으니, 최적화 전 파일을 한 번 보관해두시면 안전합니다.</p>'
+      + '</div>'
+      + '<div class="admin-block"><h2>웹 업로드용으로 내보내기</h2>'
+      +   '<p class="admin-hint">이미지를 실제 파일로 분리해서 index.html과 images 폴더로 묶어 내려받아요. 이 폴더째로 웹 서버에 올리면 HTML 용량이 훨씬 가벼워집니다.</p>'
+      +   '<div class="admin-actions">'
+      +     '<button type="button" class="admin-btn" data-admin-action="export-web-zip">웹 업로드용 폴더로 내보내기 (.zip)</button>'
+      +   '</div>'
+      + '</div>'
+      + '<div class="admin-block"><h2>현재 데이터 (JSON)</h2>'
+      + '<div class="admin-export"><textarea readonly id="export-json">'+json.replace(/</g,"&lt;")+'</textarea></div>'
+      + '<div class="admin-actions">'
+      +   '<button type="button" class="admin-btn" data-admin-action="copy-json">클립보드에 복사</button>'
+      +   '<button type="button" class="admin-btn ghost" data-admin-action="download-json">JSON 다운로드</button>'
+      +   '<button type="button" class="admin-btn danger" data-admin-action="reset-data">샘플 데이터로 초기화</button>'
+      + '</div>'
+    + '</div>';
+  }
+  function optimizeAllImages(){
+    const before = totalImageBytes();
+    const jobs = [];
+    STUDIOS.forEach(function(s){
+      if(isDataUrl(s.profileImage)){
+        jobs.push(compressImageDataUrl(s.profileImage, MAX_IMAGE_DIM, MAX_IMAGE_BYTES).then(function(out){ s.profileImage = out; }));
+      }
+    });
+    POSTS.forEach(function(p){
+      (p.images||[]).forEach(function(im, idx){
+        if(!isDataUrl(im)) return;
+        jobs.push(compressImageDataUrl(im, MAX_IMAGE_DIM, MAX_IMAGE_BYTES).then(function(out){ p.images[idx] = out; }));
+      });
+    });
+    if(!jobs.length){ alert("최적화할 이미지가 없어요. (이미 이미지 폴더로 분리된 이미지는 대상에서 제외돼요)"); return; }
+    beginImageOp();
+    Promise.all(jobs).then(function(){
+      const after = totalImageBytes();
+      saveData();
+      endImageOp();
+      refreshAdminBody();
+      const saved = before - after;
+      alert("이미지 최적화 완료.\n\n이전: "+formatBytes(before)+"\n이후: "+formatBytes(after)+"\n절감: "+formatBytes(saved > 0 ? saved : 0)+"\n\n'새 버전으로 저장'을 눌러 HTML 파일로 보관해주세요.");
+    }).catch(function(){
+      endImageOp();
+      alert("최적화 중 문제가 발생했어요. 다시 시도해주세요.");
+    });
+  }
+
+  /* ---- 포스트 편집 팝업 (관리자 전용 모달) ---- */
+  function openAdminPostModal(postId, studioId){
+    adminEditingPostId = postId;
+    adminEditingPostStudioId = studioId;
+    const existing = postId ? getPost(postId) : null;
+    adminModalImages = (existing && existing.images) ? existing.images.slice() : [];
+    adminModalDirty = false;
+    adminModalSaving = false;
+    renderAdminPostModal();
+    document.getElementById("admin-modal-overlay").classList.add("open");
+  }
+  function closeAdminModal(){
+    const el = document.getElementById("admin-modal-overlay");
+    if(el) el.classList.remove("open");
+    const content = document.getElementById("admin-modal-content");
+    if(content) content.innerHTML = "";
+    adminEditingPostId = null; adminEditingPostStudioId = null; adminModalImages = []; adminModalDirty = false; adminModalSaving = false;
+    refreshAdminBody();
+  }
+  function requestCloseAdminModal(){
+    if(adminModalSaving) return;
+    if(adminModalDirty){
+      if(!confirm("저장하지 않은 내용이 있어요. 닫을까요?")) return;
+    }
+    closeAdminModal();
+  }
+  function renderAdminPostModal(){
+    const isNew = !adminEditingPostId;
+    const p = isNew ? {name:"", description:"", styleType:"", industryTags:[]} : getPost(adminEditingPostId);
+    const selectedIndustry = p.industryTags||[];
+    document.getElementById("admin-modal-content").innerHTML =
+      '<button class="modal-close" data-admin-modal-close>✕</button>'
+      + '<div class="modal-body">'
+      +   '<h3 class="modal-name">'+(isNew?"새 게시물 등록":"게시물 편집")+'</h3>'
+      +   '<div class="admin-row"><label>이미지 미리보기</label>'
+      +     '<div class="admin-image-grid">'
+      +       (adminModalImages.length ? adminModalImages.map(function(img,idx){
+                return '<div class="admin-image-thumb-lg"><img src="'+img+'"><div class="admin-image-thumb-fade"></div><button type="button" class="remove-btn-lg" data-admin-action="modal-remove-image" data-idx="'+idx+'">×</button></div>';
+              }).join("") : '<p class="progress-msg">아직 등록된 이미지가 없어요.</p>')
+      +     '</div>'
+      +     '<input type="file" accept="image/*" multiple class="admin-file-input" id="admin-modal-file-input">'
+      +   '</div>'
+      +   '<div class="admin-row"><label>프로젝트명</label><input type="text" id="admin-modal-name" value="'+(p.name||"")+'"></div>'
+      +   '<div class="admin-row"><label>설명</label><textarea id="admin-modal-desc">'+(p.description||"")+'</textarea></div>'
+      +   '<div class="admin-row"><label>스타일 (매트릭스16)</label><select id="admin-modal-style">'
+      +     '<option value=""'+(p.styleType?"":" selected")+'>-- 선택 --</option>'
+      +     TYPES_16.map(t=>'<option value="'+t.name+'" '+(t.name===p.styleType?"selected":"")+'>'+t.name+' ('+t.code+')</option>').join("")
+      +   '</select></div>'
+      +   '<div class="admin-row"><label>업종 태그</label><div class="admin-checks" id="admin-modal-industry">'
+      +     INDUSTRY_TAGS.map(function(t){
+              const checked = selectedIndustry.indexOf(t.name)>-1;
+              return '<label class="admin-check" title="'+t.desc+'"><input type="checkbox" value="'+t.name+'" '+(checked?"checked":"")+'>'+t.name+'</label>';
+            }).join("")
+      +   '</div></div>'
+      +   '<div class="admin-actions">'
+      +     '<button type="button" class="admin-btn" data-admin-action="save-post-modal">저장</button>'
+      +     (isNew?"":'<button type="button" class="admin-btn danger" data-admin-action="delete-post-modal">삭제</button>')
+      +   '</div>'
+      + '</div>';
+  }
+
+  function handleAdminFieldChange(el){
+    const entity = el.dataset.entity, id = el.dataset.id, field = el.dataset.field;
+    const arr = entity==="studio" ? STUDIOS : POSTS;
+    const obj = arr.find(o=>o.id===id);
+    if(!obj) return;
+
+    if(el.type==="file"){
+      const files = Array.from(el.files||[]);
+      if(!files.length) return;
+      beginImageOp();
+      readAndCompressFiles(files).then(function(results){
+        if(field==="profileImage") obj.profileImage = results[0];
+        saveData();
+        refreshAdminBody();
+        endImageOp();
+      });
+      return;
+    }
+    if(field==="industryTag"){
+      const tag = el.dataset.tag; obj.industryTags = obj.industryTags||[];
+      const i = obj.industryTags.indexOf(tag);
+      if(el.checked && i<0) obj.industryTags.push(tag);
+      if(!el.checked && i>-1) obj.industryTags.splice(i,1);
+    } else {
+      obj[field] = el.value;
+    }
+    saveData();
+    if(entity==="studio" && adminEditingStudioId===id){ refreshAdminBody(); }
+  }
+  function handleAdminAction(el){
+    const action = el.dataset.adminAction;
+    if(action==="new-studio"){
+      const st = {id:"s"+Date.now(), name:"새 스튜디오", bio:"", tags:[], profileImage:null, avatarColor:null};
+      STUDIOS.push(st);
+      adminEditingStudioId = st.id;
+      saveData(); refreshAdminBody();
+    } else if(action==="edit-studio"){
+      adminEditingStudioId = el.dataset.id; refreshAdminBody();
+    } else if(action==="back-to-studios"){
+      adminEditingStudioId = null; refreshAdminBody();
+    } else if(action==="delete-studio"){
+      if(!confirm("이 스튜디오와 소속 게시물을 모두 삭제할까요? 되돌릴 수 없어요.")) return;
+      STUDIOS = STUDIOS.filter(s=>s.id!==el.dataset.id);
+      POSTS = POSTS.filter(p=>p.studioId!==el.dataset.id);
+      adminEditingStudioId = null;
+      saveData(); refreshAdminBody();
+    } else if(action==="toggle-hide-studio"){
+      const st = getStudio(el.dataset.id);
+      if(st){ st.hidden = !st.hidden; saveData(); refreshAdminBody(); }
+    } else if(action==="remove-profile-image"){
+      const st = getStudio(el.dataset.id); if(st){ st.profileImage=null; saveData(); refreshAdminBody(); }
+    } else if(action==="delete-sheet-post"){
+      if(!confirm("이 게시물을 삭제할까요? 되돌릴 수 없어요.")) return;
+      POSTS = POSTS.filter(function(p){ return p.id !== el.dataset.id; });
+      saveData(); refreshAdminBody();
+    } else if(action==="save-settings"){
+      const inp = document.getElementById("settings-studio-limit");
+      let n = inp ? parseInt(inp.value,10) : NaN;
+      if(!Number.isFinite(n) || n < 1) n = 1;
+      if(n > 500) n = 500;
+      SETTINGS.studioImageLimit = n;
+      saveData();
+      refreshAdminBody();
+    } else if(action==="new-post"){
+      const studioId = el.dataset.studio;
+      const count = postsByStudio(studioId).length;
+      const limit = SETTINGS.studioImageLimit || 20;
+      if(count >= limit){
+        alert("한 스튜디오에는 게시물을 최대 "+limit+"개까지 등록할 수 있어요. 기존 게시물을 정리하거나 설정에서 제한을 늘려주세요.");
+        return;
+      }
+      openAdminPostModal(null, studioId);
+    } else if(action==="edit-post"){
+      const p = getPost(el.dataset.id);
+      if(p) openAdminPostModal(p.id, p.studioId);
+    } else if(action==="modal-remove-image"){
+      adminModalImages.splice(parseInt(el.dataset.idx,10),1);
+      adminModalDirty = true;
+      renderAdminPostModal();
+    } else if(action==="save-post-modal"){
+      if(adminModalSaving) return;
+      if(pendingImageOps > 0){ alert("이미지를 처리하는 중이에요. 잠시 후 저장해주세요."); return; }
+      const name = document.getElementById("admin-modal-name").value.trim();
+      if(!name){ alert("프로젝트명을 입력해주세요."); return; }
+      adminModalSaving = true;
+      try{
+        const desc = document.getElementById("admin-modal-desc").value.trim();
+        const styleType = document.getElementById("admin-modal-style").value;
+        const industryTags = Array.from(document.querySelectorAll("#admin-modal-industry input:checked")).map(i=>i.value);
+        if(adminEditingPostId){
+          const p = getPost(adminEditingPostId);
+          p.name=name; p.description=desc; p.styleType=styleType; p.industryTags=industryTags; p.images=adminModalImages.slice();
+        } else {
+          POSTS.push({id:"p"+Date.now()+"-"+Math.random().toString(36).slice(2,7), studioId:adminEditingPostStudioId, name:name, description:desc, styleType:styleType, industryTags:industryTags, images:adminModalImages.slice(), createdAt:new Date().toISOString().slice(0,10)});
+        }
+        saveData();
+        adminModalDirty = false;
+      } finally {
+        closeAdminModal();
+      }
+    } else if(action==="delete-post-modal"){
+      if(adminModalSaving) return;
+      adminModalSaving = true;
+      try{
+        if(adminEditingPostId){ POSTS = POSTS.filter(p=>p.id!==adminEditingPostId); saveData(); }
+        adminModalDirty = false;
+      } finally {
+        closeAdminModal();
+      }
+    } else if(action==="reset-data"){
+      if(confirm("샘플 데이터로 초기화할까요? 편집한 내용이 사라져요.")) resetData();
+    } else if(action==="copy-json"){
+      const ta = document.getElementById("export-json"); ta.select();
+      try{ document.execCommand("copy"); alert("클립보드에 복사했어요."); }catch(e){ alert("복사에 실패했어요. 직접 선택해서 복사해주세요."); }
+    } else if(action==="download-json"){
+      const json = JSON.stringify({studios:STUDIOS, posts:POSTS}, null, 2);
+      const blob = new Blob([json], {type:"application/json"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob); a.download = "prism-data.json"; a.click();
+    } else if(action==="discard-draft"){
+      if(confirm("이 브라우저에 남은 초안을 삭제하고, 파일에 담긴 원본 내용으로 되돌릴까요?")) discardDraft();
+    } else if(action==="optimize-images"){
+      if(confirm("모든 이미지를 1600px · 1MB 이하로 다시 압축할까요? 원본 화질로는 되돌릴 수 없어요.")) optimizeAllImages();
+    } else if(action==="save-new-version"){
+      exportNewVersionHTML();
+    } else if(action==="export-web-zip"){
+      exportWebUploadZip();
+    }
+  }
+
+  /* =========================================================
+     11. 라우터
+     ========================================================= */
+  function currentPath(){ return (location.hash||"").replace(/^#\/?/,""); }
+  function updateActiveNav(path){
+    const top = path.split("/")[0] || "";
+    document.querySelectorAll("[data-route]").forEach(function(a){ a.classList.toggle("active", a.dataset.route===top); });
+  }
+  function render(){
+    closeModal();
+    const path = currentPath();
+    const parts = path.split("/").filter(Boolean);
+    const app = document.getElementById("app");
+    updateActiveNav(path);
+    const isHome = !(parts[0]==="studio" || parts[0]==="liked" || parts[0]==="admin");
+    if(parts[0]==="studio" && parts[1]) app.innerHTML = renderStudioPage(parts[1]);
+    else if(parts[0]==="liked") app.innerHTML = renderLiked();
+    else if(parts[0]==="admin") app.innerHTML = renderAdmin();
+    else app.innerHTML = renderHome();
+    if(parts[0]!=="admin") app.innerHTML += siteFooterHTML();
+    if(isHome) setupHomeInfiniteScroll();
+    updateLikeBadge();
+    updateBusyUI();
+    window.scrollTo(0,0);
+  }
+
+  /* =========================================================
+     12. 이벤트 위임
+     ========================================================= */
+  document.addEventListener("mousedown", function(e){
+    adminOverlayMouseDownOnBackdrop = (e.target.id==="modal-overlay" || e.target.id==="admin-modal-overlay");
+  });
+  document.addEventListener("click", function(e){
+    const likeBtn = e.target.closest(".like-btn");
+    if(likeBtn){ toggleLike(likeBtn.dataset.likeId); return; }
+
+    const tagToggle = e.target.closest(".tag-toggle");
+    if(tagToggle){ toggleTypeFilter(tagToggle.dataset.tag, tagToggle.dataset.type); return; }
+
+    const gotoStyle = e.target.closest("[data-goto-style]");
+    if(gotoStyle){ gotoTagFilter(gotoStyle.dataset.gotoStyle, "style"); return; }
+    const gotoInd = e.target.closest("[data-goto-industry]");
+    if(gotoInd){ gotoTagFilter(gotoInd.dataset.gotoIndustry, "industry"); return; }
+
+    const clearTags = e.target.closest("[data-clear-tags]");
+    if(clearTags){ selectedTypes.clear(); selectedIndustry.clear(); mountHome(); return; }
+
+    const opener = e.target.closest("[data-open-post]");
+    if(opener){ openPostModal(opener.dataset.openPost); return; }
+
+    const goback = e.target.closest("[data-goback]");
+    if(goback){ history.back(); return; }
+
+    if(e.target.closest("[data-dismiss-hint]")){ dismissHint(); return; }
+    if(e.target.closest("[data-modal-close]") || (e.target.id==="modal-overlay" && adminOverlayMouseDownOnBackdrop)){ closeModal(); return; }
+    if(e.target.closest("[data-modal-prev]")){ shiftModalImage(-1); return; }
+    if(e.target.closest("[data-modal-next]")){ shiftModalImage(1); return; }
+
+    const adminTabBtn = e.target.closest("[data-admin-tab]");
+    if(adminTabBtn){ adminTab = adminTabBtn.dataset.adminTab; adminEditingStudioId=null; document.getElementById("app").innerHTML = renderAdmin(); return; }
+
+    if(e.target.closest("[data-admin-modal-close]") || (e.target.id==="admin-modal-overlay" && adminOverlayMouseDownOnBackdrop)){ requestCloseAdminModal(); return; }
+
+    const adminAction = e.target.closest("[data-admin-action]");
+    if(adminAction){ handleAdminAction(adminAction); return; }
+  });
+  document.addEventListener("input", function(e){
+    if(e.target.closest("#admin-modal-content")){ adminModalDirty = true; }
+  });
+  document.addEventListener("error", function(e){
+    const el = e.target;
+    if(el && el.tagName === "IMG" && el.hasAttribute("data-sheet-check-img")){
+      const div = document.createElement("div");
+      div.className = "sheet-thumb-broken";
+      div.textContent = "링크 깨짐";
+      if(el.parentNode) el.parentNode.replaceChild(div, el);
+    }
+  }, true);
+  document.addEventListener("change", function(e){
+    if(e.target.id==="admin-modal-file-input"){
+      const files = Array.from(e.target.files||[]);
+      if(!files.length) return;
+      beginImageOp();
+      readFilesRaw(files).then(function(raws){
+        startCropQueue(raws, function(results){
+          adminModalImages = adminModalImages.concat(results);
+          adminModalDirty = true;
+          renderAdminPostModal();
+          endImageOp();
+        });
+      });
+      return;
+    }
+    if(e.target.closest("#admin-modal-content")){ adminModalDirty = true; }
+    const field = e.target.closest("[data-field]");
+    if(field){ handleAdminFieldChange(field); }
+
+    if(e.target.id==="sheet-upload-studio"){ sheetUploadStudio = e.target.value; return; }
+    if(e.target.id==="sheet-bulk-file"){
+      const files = Array.from(e.target.files||[]);
+      if(files.length) bulkUploadToStudio(sheetUploadStudio, files);
+      e.target.value = "";
+      return;
+    }
+    const sheetField = e.target.closest("[data-sheet-field]");
+    if(sheetField){
+      const row = sheetField.closest("[data-sheet-row]");
+      const p = row && getPost(row.dataset.sheetRow);
+      if(!p) return;
+      const field2 = sheetField.dataset.sheetField;
+      if(field2==="industryTags"){
+        p.industryTags = sheetField.value.split(",").map(function(s){ return s.trim(); }).filter(Boolean);
+      } else {
+        p[field2] = sheetField.value;
+      }
+      saveData();
+      return;
+    }
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key==="Escape"){
+      const pubOpen = document.getElementById("modal-overlay").classList.contains("open");
+      const adminOpen = document.getElementById("admin-modal-overlay").classList.contains("open");
+      if(pubOpen) closeModal();
+      if(adminOpen) requestCloseAdminModal();
+      return;
+    }
+    if((e.key==="Enter"||e.key===" ") && document.activeElement && document.activeElement.matches("[data-open-post]")){
+      e.preventDefault();
+      openPostModal(document.activeElement.dataset.openPost);
+    }
+  });
+
+  window.addEventListener("hashchange", render);
+  document.addEventListener("pointerdown", function(ev){
+    const h = ev.target.closest(".crop-h");
+    const box = ev.target.closest("#crop-box");
+    if(!h && !box) return;
+    ev.preventDefault();
+    cropDrag = {
+      mode: h ? h.dataset.h : "move",
+      sx: ev.clientX, sy: ev.clientY,
+      start: Object.assign({}, cropBoxRect)
+    };
+  });
+  document.addEventListener("pointermove", function(ev){
+    if(!cropDrag) return;
+    const e = cropEls();
+    const dw = e.img.clientWidth, dh = e.img.clientHeight;
+    const dx = ev.clientX - cropDrag.sx, dy = ev.clientY - cropDrag.sy;
+    const s = cropDrag.start;
+    let r = Object.assign({}, s);
+    if(cropDrag.mode === "move"){
+      r.x = Math.min(Math.max(0, s.x + dx), dw - s.w);
+      r.y = Math.min(Math.max(0, s.y + dy), dh - s.h);
+    } else {
+      let nw = s.w, nh = s.h, nx = s.x, ny = s.y;
+      if(cropDrag.mode === "se"){ nw = s.w + dx; }
+      if(cropDrag.mode === "ne"){ nw = s.w + dx; }
+      if(cropDrag.mode === "sw"){ nw = s.w - dx; nx = s.x + dx; }
+      if(cropDrag.mode === "nw"){ nw = s.w - dx; nx = s.x + dx; }
+      nw = Math.max(24, nw);
+      nh = cropRatio > 0 ? nw / cropRatio : Math.max(24, (cropDrag.mode === "nw" || cropDrag.mode === "ne") ? s.h - dy : s.h + dy);
+      if(cropDrag.mode === "nw" || cropDrag.mode === "ne"){ ny = s.y + (s.h - nh); }
+      if(nx < 0){ nx = 0; }
+      if(ny < 0){ ny = 0; }
+      if(nx + nw > dw){ nw = dw - nx; if(cropRatio > 0) nh = nw / cropRatio; }
+      if(ny + nh > dh){ nh = dh - ny; if(cropRatio > 0) nw = nh * cropRatio; }
+      r = {x:nx, y:ny, w:nw, h:nh};
+    }
+    cropBoxRect = r;
+    drawCropBox();
+  });
+  document.addEventListener("pointerup", function(){ cropDrag = null; });
+  document.addEventListener("click", function(ev){
+    const rb = ev.target.closest(".crop-ratio");
+    if(rb){
+      document.querySelectorAll(".crop-ratio").forEach(function(b){ b.classList.remove("active"); });
+      rb.classList.add("active");
+      cropRatio = parseFloat(rb.dataset.ratio);
+      resetCropBox();
+      return;
+    }
+    if(ev.target.id === "crop-apply"){ applyCrop(false); return; }
+    if(ev.target.id === "crop-skip"){ applyCrop(true); return; }
+    if(ev.target.id === "crop-cancel"){
+      cropQueue = [];
+      document.getElementById("crop-overlay").classList.remove("open");
+      const cb = cropDone; cropDone = null;
+      const out = cropResults.slice(); cropResults = [];
+      if(cb) cb(out);
+      return;
+    }
+  });
+
+  /* ---------- 최상단으로 가기 버튼 ---------- */
+  const SCROLL_TOP_THRESHOLD = 480;
+  let scrollTopTicking = false;
+  function initScrollTopButton(){
+    const btn = document.getElementById("scroll-top-btn");
+    if(!btn) return;
+    btn.addEventListener("click", function(){ window.scrollTo({top:0, behavior:"smooth"}); });
+    window.addEventListener("scroll", function(){
+      if(scrollTopTicking) return;
+      scrollTopTicking = true;
+      requestAnimationFrame(function(){
+        btn.classList.toggle("show", window.scrollY > SCROLL_TOP_THRESHOLD);
+        scrollTopTicking = false;
+      });
+    }, {passive:true});
+  }
+  window.addEventListener("DOMContentLoaded", function(){
+    loadData();
+    render();
+    initScrollTopButton();
+    // 초안은 IndexedDB에서 비동기로 읽어온다. 복원되면 화면을 다시 그린다.
+    restoreDraft().then(function(applied){
+      if(applied || draftState === "mismatch") render();
+    });
+  });
+  // 탭을 닫거나 숨길 때 대기 중인 초안을 즉시 기록한다(디바운스로 유실되지 않게).
+  window.addEventListener("pagehide", function(){ flushDraft(); });
+  document.addEventListener("visibilitychange", function(){
+    if(document.visibilityState === "hidden") flushDraft();
+  });
+})();
+</script>
+
+
+</body></html>
